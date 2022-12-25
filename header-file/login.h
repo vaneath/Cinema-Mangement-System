@@ -9,7 +9,7 @@ using namespace std;
 
 void mainDisplay();
 void mainMenu();
-void mainAdmin();
+void AdminMenu();
 void mainRegister();
 
 string LoginInfoDisplay[2] = {
@@ -87,7 +87,7 @@ void mainLogin()
             if(getch() == 27) return;
             color(10);
             getline(cin >> ws, loginVar.loginUsername);
-        Password:
+        
             gotoxy(X+5, Y+4);
             color(15);
             cout << LoginInfoDisplay[1];
@@ -131,7 +131,7 @@ void mainLogin()
         {
             gotoxy(X+35, Y+4);
             for(int i = 0; i < 8; i++) cout << " ";
-            mainAdmin();
+            AdminMenu();
             return;
         }
     }

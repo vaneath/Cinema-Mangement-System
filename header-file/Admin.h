@@ -7,42 +7,10 @@
 
 using namespace std;
 
+void mainDiaplay();
+
 fstream MovieFile;
-struct Node
-{
-    string movie_name;
-    string timetable;
-    int price;
-    Node *next, *prev;
-};
-void color(int color)
-{
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-}
 
-void gotoXY(int x, int y)
-{
-    COORD c;
-    c.X = x;
-    c.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
-}
-
-struct List
-{
-    int n;
-    Node *head, *tail;
-};
-
-List *createEmptyList()
-{
-    List *ls = new List;
-
-    ls->n = 0;
-    ls->head = NULL;
-    ls->tail = NULL;
-    return ls;
-}
 void readMovie(List *ls)
 {
     Node *movie;
@@ -54,7 +22,7 @@ void readMovie(List *ls)
         {
             movie = new Node;
             movie->movie_name = nowShowing;
-            if (ls->n == 0)
+            if (ls->index == 0)
             {
                 ls->head = movie;
                 ls->tail = movie;
@@ -65,7 +33,7 @@ void readMovie(List *ls)
                 movie->prev = ls->tail;
                 ls->tail = movie;
             }
-            ls->n = ls->n + 1;
+            ls->index = ls->index + 1;
         }
     }
     else
@@ -112,7 +80,7 @@ void insertMovie(List *ls, string nowShowing, int Cprice)
     movie->next = NULL;
     movie->prev = NULL;
 
-    if (ls->n == 0)
+    if (ls->index == 0)
     {
         ls->head = movie;
         ls->tail = movie;
@@ -123,7 +91,7 @@ void insertMovie(List *ls, string nowShowing, int Cprice)
         movie->prev = ls->tail;
         ls->tail = movie;
     }
-    ls->n = ls->n + 1;
+    ls->index = ls->index + 1;
     StoreNowShowing(ls);
 }
 
@@ -134,7 +102,7 @@ void insertTimetable(List *ls, string ctimetable)
     movie->next = NULL;
     movie->prev = NULL;
 
-    if (ls->n == 0)
+    if (ls->index == 0)
     {
         ls->head = movie;
         ls->tail = movie;
@@ -145,7 +113,7 @@ void insertTimetable(List *ls, string ctimetable)
         movie->prev = ls->tail;
         ls->tail = movie;
     }
-    ls->n = ls->n + 1;
+    ls->index = ls->index + 1;
 }
 
 void insertUpcoming(List *ls, string Upcoming)
@@ -155,7 +123,7 @@ void insertUpcoming(List *ls, string Upcoming)
     movie->next = NULL;
     movie->prev = NULL;
 
-    if (ls->n == 0)
+    if (ls->index == 0)
     {
         ls->head = movie;
         ls->tail = movie;
@@ -166,7 +134,7 @@ void insertUpcoming(List *ls, string Upcoming)
         movie->prev = ls->tail;
         ls->tail = movie;
     }
-    ls->n = ls->n + 1;
+    ls->index = ls->index + 1;
     Storeupcoming(ls);
 }
 
@@ -218,7 +186,7 @@ void deleteMovie(List *ls, string search_name)
             {
                 ls->head = tmp->next;
                 delete tmp;
-                ls->n = ls->n - 1;
+                ls->index = ls->index - 1;
                 found = 1;
                 break;
             }
@@ -227,7 +195,7 @@ void deleteMovie(List *ls, string search_name)
                 ls->tail = tmp->prev;
                 ls->tail->next = NULL;
                 delete tmp;
-                ls->n = ls->n - 1;
+                ls->index = ls->index - 1;
                 found = 1;
                 break;
             }
@@ -238,7 +206,7 @@ void deleteMovie(List *ls, string search_name)
                 tmp1->next = tmp2;
                 tmp2->prev = tmp1;
                 delete tmp;
-                ls->n = ls->n - 1;
+                ls->index = ls->index - 1;
                 found = 1;
                 break;
             }
@@ -273,7 +241,7 @@ void deleteUpcoming(List *ls, string search_name)
             {
                 ls->head = tmp->next;
                 delete tmp;
-                ls->n = ls->n - 1;
+                ls->index = ls->index - 1;
                 found = 1;
                 break;
             }
@@ -282,7 +250,7 @@ void deleteUpcoming(List *ls, string search_name)
                 ls->tail = tmp->prev;
                 ls->tail->next = NULL;
                 delete tmp;
-                ls->n = ls->n - 1;
+                ls->index = ls->index - 1;
                 found = 1;
                 break;
             }
@@ -293,7 +261,7 @@ void deleteUpcoming(List *ls, string search_name)
                 tmp1->next = tmp2;
                 tmp2->prev = tmp1;
                 delete tmp;
-                ls->n = ls->n - 1;
+                ls->index = ls->index - 1;
                 found = 1;
                 break;
             }
@@ -365,7 +333,7 @@ MainMenu:
     system("cls");
     while (running)
     {
-        gotoXY(45, 5);
+        gotoxy(45, 5);
         color(11);
         cout << "------ ";
         color(3);
@@ -373,49 +341,49 @@ MainMenu:
         color(11);
         cout << "------";
 
-        gotoXY(40, 8);
+        gotoxy(40, 8);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[0]);
         cout << " Add new movie";
 
-        gotoXY(40, 9);
+        gotoxy(40, 9);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[1]);
         cout << " Add new upcoming movie";
 
-        gotoXY(40, 10);
+        gotoxy(40, 10);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[2]);
         cout << " View most popular movie";
 
-        gotoXY(40, 11);
+        gotoxy(40, 11);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[3]);
         cout << " View movies list";
 
-        gotoXY(40, 12);
+        gotoxy(40, 12);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[4]);
         cout << " View upcoming list";
 
-        gotoXY(40, 13);
+        gotoxy(40, 13);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[5]);
         cout << " Delete outdated movie";
 
-        gotoXY(40, 14);
+        gotoxy(40, 14);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[6]);
         cout << " Delete upcoming list";
 
-        gotoXY(40, 21);
+        gotoxy(40, 21);
         color(Set[7]);
         cout << "Back";
 
@@ -534,9 +502,9 @@ void AdminMenu()
 
     while (1)
     {
+    system("cls");
     adminMenu:
-
-        gotoXY(45, 5);
+        gotoxy(45, 5);
         color(11);
         cout << "------ ";
         color(3);
@@ -544,37 +512,37 @@ void AdminMenu()
         color(11);
         cout << "------";
 
-        gotoXY(40, 8);
+        gotoxy(40, 8);
         color(Set[5]);
         cout << char(BlockSign);
         color(Set[0]);
         cout << " Movies";
 
-        gotoXY(40, 9);
+        gotoxy(40, 9);
         color(Set[5]);
         cout << char(BlockSign);
         color(Set[1]);
         cout << " Food & Drink";
 
-        gotoXY(40, 10);
+        gotoxy(40, 10);
         color(Set[5]);
         cout << char(BlockSign);
         color(Set[2]);
         cout << " Tickets";
 
-        gotoXY(40, 11);
+        gotoxy(40, 11);
         color(Set[5]);
         cout << char(BlockSign);
         color(Set[3]);
         cout << " Purchase History";
 
-        gotoXY(40, 21);
+        gotoxy(40, 21);
         color(Set[5]);
         cout << char(BlockSign);
         color(Set[4]);
         cout << " Log out";
 
-        key = _getch();
+        key = getch();
 
         Set[0] = 15; // reset color
         Set[1] = 15;
@@ -606,35 +574,35 @@ void AdminMenu()
         {
             if (counter == 0)
             {
-                system("cls");
                 MovieMenu();
             }
             if (counter == 1)
             {
                 system("cls");
+                cout << "No data yet" << getch();
             }
             if (counter == 2)
             {
                 system("cls");
+                cout << "No data yet" << getch();
             }
             if (counter == 3)
             {
                 system("cls");
+                cout << "No data yet" << getch();
             }
             if (counter == 4)
             {
                 string confirm;
                 system("cls");
-                gotoXY(50, 5);
+                gotoxy(50, 5);
                 cout << "Do you want to log out of admin mode[YES/NO]: ";
                 getline(cin >> ws, confirm);
 
                 if (confirm == "YES" || confirm == "yes")
                 {
-                    gotoXY(45, 8);
+                    gotoxy(45, 8);
                     cout << "Pressed any key to continued" << getch();
-                    system("cls");
-                    AdminMenu();
                     return;
                 }
                 else if (confirm == "NO" || confirm == "no")

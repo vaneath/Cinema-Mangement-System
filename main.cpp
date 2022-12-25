@@ -4,6 +4,7 @@
 
 #include "header-file/registration.h"
 #include "header-file/login.h"
+#include "header-file/Admin.h"
 #include "header-file/menu.h"
 
 using namespace std;
