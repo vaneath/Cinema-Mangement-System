@@ -1,10 +1,10 @@
-#include<iostream>
-
-#include"Admin.h"
+#include <iostream>
+#include "Admin.h"
 
 using namespace std;
 
-main(){
- AdminMenu();
- return 0;
+main()
+{
+    AdminMenu();
+    return 0;
 }

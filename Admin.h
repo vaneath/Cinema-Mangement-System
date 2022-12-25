@@ -3,131 +3,18 @@
 #include <string>
 #include <dos.h>
 #include <conio.h>
+#include <fstream>
 
 using namespace std;
 
-struct Element
+fstream MovieFile;
+struct Node
 {
-    Element *next;
-    string movieName;
-    string upcoming;
+    string movie_name;
+    string timetable;
+    int price;
+    Node *next, *prev;
 };
-struct Queue
-{
-    Element *Front, *Rear;
-    int n;
-};
-Queue *createQueue()
-{
-    Queue *q1;
-    q1 = new Queue;
-    q1->Front = NULL;
-    q1->Rear = NULL;
-    q1->n = 0;
-    return q1;
-}
-void AddMovie(Queue *q1, string movie)
-{
-    Element *e = new Element();
-
-    e->next = NULL;
-    e->movieName = movie;
-    if (q1->n == 0)
-        q1->Front = e;
-
-    if (q1->n != 0)
-        q1->Rear->next = e;
-
-    q1->Rear = e;
-    q1->n += 1;
-}
-void AddUpcoming(Queue *q1, string N_upcoming)
-{
-    Element *e = new Element();
-
-    e->next = NULL;
-    e->upcoming = N_upcoming;
-    if (q1->n == 0)
-        q1->Front = e;
-
-    if (q1->n != 0)
-        q1->Rear->next = e;
-
-    q1->Rear = e;
-    q1->n += 1;
-}
-void DeleteMovie(Queue *q1)
-{
-    Element *tmp = q1->Front;
-    if (q1->n == 0)
-    {
-        cout << "there is no movie in the list yet" << endl;
-        return;
-    }
-    if (q1->n == 1)
-    {
-        q1->Rear = NULL;
-        cout << "delete successfully" << endl;
-    }
-    q1->Front = q1->Front->next;
-    q1->n -= 1;
-    delete tmp;
-}
-
-void DisplayMovie(Queue *q1)
-{
-    int i = 1;
-    int BlockSign = 254;
-    Element *tmp = q1->Front;
-    if (tmp == NULL)
-    {
-        cout << "there is no movie in the list" << endl;
-    }
-    while (tmp != NULL)
-    {
-        cout << "\t\t\t\t\t\t" << (char)BlockSign << " " << tmp->movieName << endl;
-        tmp = tmp->next;
-    }
-    cout << endl;
-}
-
-void DisplayUpcoming(Queue *q1)
-{
-    int i = 1;
-    int BlockSign = 254;
-    Element *tmp = q1->Front;
-    if (tmp == NULL)
-    {
-        cout << "there is no movie in the list" << endl;
-    }
-    while (tmp != NULL)
-    {
-        cout << "\t\t\t\t\t\t" << (char)BlockSign << " " << tmp->upcoming << endl;
-        tmp = tmp->next;
-    }
-    cout << endl;
-}
-
-void case1(Queue *q1)
-{
-    string nameMovie;
-
-    cout << "\t\t\t\t\tPlease enter the movie that you want to add : ";
-    getline(cin >> ws, nameMovie);
-    cout << endl;
-
-    AddMovie(q1, nameMovie);
-}
-void case2(Queue *q1)
-{
-    string upcoming_movie;
-
-    cout << "\t\t\t\t\tPlease enter the name of upcoming movie";
-    getline(cin >> ws, upcoming_movie);
-    cout << endl;
-
-    AddMovie(q1, upcoming_movie);
-}
 void color(int color)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
@@ -141,6 +28,326 @@ void gotoXY(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
+struct List
+{
+    int n;
+    Node *head, *tail;
+};
+
+List *createEmptyList()
+{
+    List *ls = new List;
+
+    ls->n = 0;
+    ls->head = NULL;
+    ls->tail = NULL;
+    return ls;
+}
+void readMovie(List *ls)
+{
+    Node *movie;
+    string nowShowing;
+    MovieFile.open("Movie.txt", ios::in);
+    if (MovieFile.is_open())
+    {
+        while (getline(MovieFile, nowShowing))
+        {
+            movie = new Node;
+            movie->movie_name = nowShowing;
+            if (ls->n == 0)
+            {
+                ls->head = movie;
+                ls->tail = movie;
+            }
+            else
+            {
+                ls->tail->next = movie;
+                movie->prev = ls->tail;
+                ls->tail = movie;
+            }
+            ls->n = ls->n + 1;
+        }
+    }
+    else
+    {
+        cout << "File not open\n";
+        exit(1);
+    }
+    MovieFile.close();
+}
+
+void StoreNowShowing(List *ls)
+{
+    Node *tmp;
+    tmp = ls->head;
+
+    MovieFile.open("Movie.txt", ios::out);
+    while (tmp != NULL)
+    {
+        MovieFile << tmp->movie_name << "\n";
+        tmp = tmp->next;
+    }
+    MovieFile.close();
+}
+
+void Storeupcoming(List *ls)
+{
+    Node *tmp;
+    tmp = ls->head;
+
+    MovieFile.open("Upcoming.txt", ios::out);
+    while (tmp != NULL)
+    {
+        MovieFile << tmp->movie_name << "\n";
+        tmp = tmp->next;
+    }
+    MovieFile.close();
+}
+
+void insertMovie(List *ls, string nowShowing, int Cprice)
+{
+    Node *movie = new Node;
+    movie->movie_name = nowShowing;
+    movie->price = Cprice;
+    movie->next = NULL;
+    movie->prev = NULL;
+
+    if (ls->n == 0)
+    {
+        ls->head = movie;
+        ls->tail = movie;
+    }
+    else
+    {
+        ls->tail->next = movie;
+        movie->prev = ls->tail;
+        ls->tail = movie;
+    }
+    ls->n = ls->n + 1;
+    StoreNowShowing(ls);
+}
+
+void insertTimetable(List *ls, string ctimetable)
+{
+    Node *movie = new Node;
+    movie->timetable = ctimetable;
+    movie->next = NULL;
+    movie->prev = NULL;
+
+    if (ls->n == 0)
+    {
+        ls->head = movie;
+        ls->tail = movie;
+    }
+    else
+    {
+        ls->tail->next = movie;
+        movie->prev = ls->tail;
+        ls->tail = movie;
+    }
+    ls->n = ls->n + 1;
+}
+
+void insertUpcoming(List *ls, string Upcoming)
+{
+    Node *movie = new Node;
+    movie->movie_name = Upcoming;
+    movie->next = NULL;
+    movie->prev = NULL;
+
+    if (ls->n == 0)
+    {
+        ls->head = movie;
+        ls->tail = movie;
+    }
+    else
+    {
+        ls->tail->next = movie;
+        movie->prev = ls->tail;
+        ls->tail = movie;
+    }
+    ls->n = ls->n + 1;
+    Storeupcoming(ls);
+}
+
+void displayTimetable(List *ls)
+{
+    Node *tmp = ls->head;
+    while (tmp != NULL)
+    {
+
+        cout << tmp->timetable << " | ";
+        tmp = tmp->next;
+    }
+}
+
+void displayNowShowing(List *ls)
+{
+    Node *tmp = ls->head;
+    while (tmp != NULL)
+    {
+
+        cout << "\t\t\t\t\t" << tmp->movie_name << "\t " << tmp->price;
+        displayTimetable(ls);
+        tmp = tmp->next;
+    }
+}
+
+void displayUpcoming(List *ls)
+{
+    Node *tmp = ls->head;
+    while (tmp != NULL)
+    {
+
+        cout << "\t\t\t\t\t" << tmp->movie_name << " " << endl;
+        tmp = tmp->next;
+    }
+}
+
+void deleteMovie(List *ls, string search_name)
+{
+    int found = 0;
+    Node *tmp1, *tmp, *tmp2;
+    tmp = ls->head;
+
+    while (tmp != NULL)
+    {
+        if (tmp->movie_name == search_name)
+        { // At the Start
+            if (tmp->prev == NULL)
+            {
+                ls->head = tmp->next;
+                delete tmp;
+                ls->n = ls->n - 1;
+                found = 1;
+                break;
+            }
+            else if (tmp->next == NULL)
+            { // At the Tail
+                ls->tail = tmp->prev;
+                ls->tail->next = NULL;
+                delete tmp;
+                ls->n = ls->n - 1;
+                found = 1;
+                break;
+            }
+            else
+            { // In between
+                tmp1 = tmp->prev;
+                tmp2 = tmp->next;
+                tmp1->next = tmp2;
+                tmp2->prev = tmp1;
+                delete tmp;
+                ls->n = ls->n - 1;
+                found = 1;
+                break;
+            }
+        }
+        tmp = tmp->next;
+    }
+
+    if (found == 1)
+    {
+        cout << "delete successful!" << endl;
+        Sleep(1);
+    }
+    else
+    {
+        cout << "Information not correct." << endl;
+        Sleep(1);
+    }
+    StoreNowShowing(ls);
+}
+
+void deleteUpcoming(List *ls, string search_name)
+{
+    int found = 0;
+    Node *tmp1, *tmp, *tmp2;
+    tmp = ls->head;
+
+    while (tmp != NULL)
+    {
+        if (tmp->movie_name == search_name)
+        { // At the Start
+            if (tmp->prev == NULL)
+            {
+                ls->head = tmp->next;
+                delete tmp;
+                ls->n = ls->n - 1;
+                found = 1;
+                break;
+            }
+            else if (tmp->next == NULL)
+            { // At the Tail
+                ls->tail = tmp->prev;
+                ls->tail->next = NULL;
+                delete tmp;
+                ls->n = ls->n - 1;
+                found = 1;
+                break;
+            }
+            else
+            { // In between
+                tmp1 = tmp->prev;
+                tmp2 = tmp->next;
+                tmp1->next = tmp2;
+                tmp2->prev = tmp1;
+                delete tmp;
+                ls->n = ls->n - 1;
+                found = 1;
+                break;
+            }
+        }
+        tmp = tmp->next;
+    }
+
+    if (found == 1)
+    {
+        cout << "delete successful!" << endl;
+        Sleep(1);
+    }
+    else
+    {
+        cout << "Information not correct." << endl;
+        Sleep(1);
+    }
+    Storeupcoming(ls);
+}
+
+void InputNowShowing(List *ls)
+{
+    string nameMovie;
+    string timeAvailible;
+    int n;
+    int inPrice;
+    cout << "\t\t\t\t\tPlease enter the movie that you want to add : ";
+    getline(cin >> ws, nameMovie);
+    cout << endl;
+    cout << "\t\t\t\t\tPlease set the price for the of the ticket: ";
+    cin >> inPrice;
+    cout << "\t\t\t\t\tHow many time do you the movie put on screening: ";
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        cout << "please the timetable for the movie screening: \n\t\t\t\t\t ";
+        getline(cin >> ws, timeAvailible);
+        insertTimetable(ls, timeAvailible);
+    }
+
+    insertMovie(ls, nameMovie, inPrice);
+}
+
+void InputUpcoming(List *ls)
+{
+    string upcoming_movie;
+
+    cout << "\t\t\t\t\tPlease enter the name of upcoming movie : ";
+    getline(cin >> ws, upcoming_movie);
+    cout << endl;
+
+    insertUpcoming(ls, upcoming_movie);
+}
+
 void MovieMenu()
 {
     int Set[] = {12, 15, 15, 15, 15, 15, 15, 15, 6}; // 15 default value, last index use for block color
@@ -148,7 +355,10 @@ void MovieMenu()
     char key;
     bool running = true;
 
-    Queue *Q1 = createQueue();
+    List *NowShowing = createEmptyList();
+    List *Upcoming = createEmptyList();
+
+    readMovie(NowShowing);
 
 MainMenu:
 
@@ -245,7 +455,7 @@ MainMenu:
             if (counter == 0)
             {
                 system("cls");
-                case1(Q1);
+                InputNowShowing(NowShowing);
                 cout << endl;
                 cout << "\t\t\t\t\t\tSuccessfully Added";
                 cout << "\n\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<";
@@ -256,7 +466,7 @@ MainMenu:
             if (counter == 1)
             {
                 system("cls");
-                case2(Q1);
+                InputUpcoming(Upcoming);
                 cout << endl;
                 cout << "\t\t\t\t\t\tSuccessfully Added";
                 cout << "\n\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<";
@@ -271,8 +481,8 @@ MainMenu:
             if (counter == 3)
             {
                 system("cls");
-                cout << "THIS IS THE LIST OF MOVIES YOU HAVE ADDED";
-                DisplayMovie(Q1);
+                cout << "\t\t\t\t\tTHIS IS THE LIST OF MOVIES YOU HAVE ADDED\n";
+                displayNowShowing(NowShowing);
                 cout << "\n\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<";
                 getch();
                 goto MainMenu;
@@ -280,24 +490,32 @@ MainMenu:
             if (counter == 4)
             {
                 system("cls");
-                cout << "THIS IS THE LIST OF UPCOMING MOVIES YOU HAVE ADDED";
-                DisplayUpcoming(Q1);
+                cout << "\t\t\t\t\tTHIS IS THE LIST OF UPCOMING MOVIES YOU HAVE ADDED\n";
+                displayUpcoming(Upcoming);
                 cout << "\n\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<";
                 getch();
                 goto MainMenu;
             }
             if (counter == 5)
             {
+                string search;
                 system("cls");
-                DeleteMovie(Q1);
-                cout << "\t\t\t\t\tSuccessfully Deleted";
+                cout << "Please input the name of the movie that you want to delete : ";
+                getline(cin >> ws, search);
+                deleteMovie(NowShowing, search);
                 cout << "\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<";
                 getch();
                 goto MainMenu;
             }
             if (counter == 6)
             {
+                string search;
                 system("cls");
+                cout << "Please input the name of the upcoming movie to delete it from the list:  ";
+                deleteUpcoming(Upcoming, search);
+                cout << "\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<";
+                getch();
+                goto MainMenu;
             }
             if (counter == 7)
             {
@@ -322,7 +540,7 @@ void AdminMenu()
         color(11);
         cout << "------ ";
         color(3);
-        cout << "WELCOME BACK SOLDIER";
+        cout << "WELCOME";
         color(11);
         cout << "------";
 
