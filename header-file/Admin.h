@@ -7,8 +7,6 @@
 
 using namespace std;
 
-void mainDiaplay();
-
 fstream MovieFile;
 
 void readMovie(List *ls)
@@ -41,18 +39,18 @@ void readMovie(List *ls)
         cout << "File not open\n";
         exit(1);
     }
+    
     MovieFile.close();
 }
 
 void StoreNowShowing(List *ls)
 {
-    Node *tmp;
-    tmp = ls->head;
+    Node *tmp = ls->head;
 
     MovieFile.open("Movie.txt", ios::out);
     while (tmp != NULL)
     {
-        MovieFile << tmp->movie_name << "\n";
+        MovieFile << tmp -> movie_name  << tmp -> price;
         tmp = tmp->next;
     }
     MovieFile.close();
@@ -74,15 +72,17 @@ void Storeupcoming(List *ls)
 
 void insertMovie(List *ls, string nowShowing, int Cprice)
 {
-    Node *movie = new Node;
+    Node *movie = new Node();
+
     movie->movie_name = nowShowing;
     movie->price = Cprice;
+
     movie->next = NULL;
     movie->prev = NULL;
 
     if (ls->index == 0)
     {
-        ls->head = movie;
+        ls ->head = movie;
         ls->tail = movie;
     }
     else
@@ -92,6 +92,7 @@ void insertMovie(List *ls, string nowShowing, int Cprice)
         ls->tail = movie;
     }
     ls->index = ls->index + 1;
+
     StoreNowShowing(ls);
 }
 
@@ -140,10 +141,9 @@ void insertUpcoming(List *ls, string Upcoming)
 
 void displayTimetable(List *ls)
 {
-    Node *tmp = ls->head;
+    Node *tmp = ls -> head;
     while (tmp != NULL)
     {
-
         cout << tmp->timetable << " | ";
         tmp = tmp->next;
     }
@@ -293,11 +293,11 @@ void InputNowShowing(List *ls)
     cout << endl;
     cout << "\t\t\t\t\tPlease set the price for the of the ticket: ";
     cin >> inPrice;
-    cout << "\t\t\t\t\tHow many time do you the movie put on screening: ";
+    cout << "\t\t\t\t\tHow many time do you want the movie put on screening: ";
     cin >> n;
     for (int i = 0; i < n; i++)
     {
-        cout << "please the timetable for the movie screening: \n\t\t\t\t\t ";
+        cout << "Please enter the timetable for the movie screening : ";
         getline(cin >> ws, timeAvailible);
         insertTimetable(ls, timeAvailible);
     }
@@ -333,61 +333,75 @@ MainMenu:
     system("cls");
     while (running)
     {
-        gotoxy(45, 5);
+        gotoxy(X+10, Y);
         color(11);
         cout << "------ ";
         color(3);
-        cout << " Movie System";
+        cout << "Movie System ";
         color(11);
         cout << "------";
 
-        gotoxy(40, 8);
+        gotoxy(X+5, Y+2);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[0]);
-        cout << " Add new movie";
+        cout << "\t   Add new movie\t  ";
+        color(Set[8]);
+        cout << char(BlockSign);
 
-        gotoxy(40, 9);
+        gotoxy(X+5, Y+4);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[1]);
-        cout << " Add new upcoming movie";
+        cout << "\tAdd new upcoming movie\t  ";
+        color(Set[8]);
+        cout << char(BlockSign);
 
-        gotoxy(40, 10);
+        gotoxy(X+5, Y+6);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[2]);
-        cout << " View most popular movie";
+        cout << "\tView most popular movie\t  ";
+        color(Set[8]);
+        cout << char(BlockSign);
 
-        gotoxy(40, 11);
+        gotoxy(X+5, Y+8);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[3]);
-        cout << " View movies list";
+        cout << "\t  View movies list\t  ";
+        color(Set[8]);
+        cout << char(BlockSign);
 
-        gotoxy(40, 12);
+        gotoxy(X+5, Y+10);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[4]);
-        cout << " View upcoming list";
+        cout << "\t  View upcoming list\t  ";
+        color(Set[8]);
+        cout << char(BlockSign);
 
-        gotoxy(40, 13);
+        gotoxy(X+5, Y+12);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[5]);
-        cout << " Delete outdated movie";
+        cout << "\t Delete outdated movie\t  ";
+        color(Set[8]);
+        cout << char(BlockSign);
 
-        gotoxy(40, 14);
+        gotoxy(X+5, Y+14);
         color(Set[8]);
         cout << char(BlockSign);
         color(Set[6]);
-        cout << " Delete upcoming list";
+        cout << "\t Delete upcoming list\t  ";
+        color(Set[8]);
+        cout << char(BlockSign);
 
-        gotoxy(40, 21);
+        gotoxy(X+20, Y+20);
         color(Set[7]);
         cout << "Back";
 
-        key = _getch();
+        key = getch();
 
         Set[0] = 15; // reset color
         Set[1] = 15;
@@ -405,7 +419,7 @@ MainMenu:
             // cout<<counter;
         }
 
-        else if (key == 80 && (counter >= 0 && counter <= 7)) // 80 for down arrow
+        else if (key == 80 && (counter >= 0 && counter < 7)) // 80 for down arrow
         {
             counter++;
             Set[counter] = 12;
@@ -451,8 +465,7 @@ MainMenu:
                 system("cls");
                 cout << "\t\t\t\t\tTHIS IS THE LIST OF MOVIES YOU HAVE ADDED\n";
                 displayNowShowing(NowShowing);
-                cout << "\n\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<";
-                getch();
+                cout << "\n\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<" << getch();
                 goto MainMenu;
             }
             if (counter == 4)
@@ -461,8 +474,7 @@ MainMenu:
                 cout << "\t\t\t\t\tTHIS IS THE LIST OF UPCOMING MOVIES YOU HAVE ADDED\n";
                 displayUpcoming(Upcoming);
                 cout << "\n\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<";
-                getch();
-                goto MainMenu;
+                MovieMenu();
             }
             if (counter == 5)
             {
@@ -502,43 +514,49 @@ void AdminMenu()
 
     while (1)
     {
-    system("cls");
     adminMenu:
-        gotoxy(45, 5);
+    system("cls");
+        gotoxy(X+10, Y);
         color(11);
         cout << "------ ";
         color(3);
         cout << "WELCOME";
         color(11);
-        cout << "------";
+        cout << " ------";
 
-        gotoxy(40, 8);
+        gotoxy(X+5, Y+2);
         color(Set[5]);
         cout << char(BlockSign);
         color(Set[0]);
-        cout << " Movies";
+        cout << "\t   Movies\t    ";
+        color(Set[5]);
+        cout << char(BlockSign);
 
-        gotoxy(40, 9);
+        gotoxy(X+5, Y+4);
         color(Set[5]);
         cout << char(BlockSign);
         color(Set[1]);
-        cout << " Food & Drink";
+        cout << "\tFood & Drink\t    ";
+        color(Set[5]);
+        cout << char(BlockSign);
 
-        gotoxy(40, 10);
+        gotoxy(X+5, Y+6);
         color(Set[5]);
         cout << char(BlockSign);
         color(Set[2]);
-        cout << " Tickets";
+        cout << "\t   Tickets\t    ";
+        color(Set[5]);
+        cout << char(BlockSign);
 
-        gotoxy(40, 11);
+        gotoxy(X+5, Y+8);
         color(Set[5]);
         cout << char(BlockSign);
         color(Set[3]);
-        cout << " Purchase History";
-
-        gotoxy(40, 21);
+        cout << "      Purchase History\t    ";
         color(Set[5]);
         cout << char(BlockSign);
+
+        gotoxy(X+16, Y+12);
         color(Set[4]);
         cout << " Log out";
 
