@@ -279,8 +279,8 @@ main()
                 int dOpt, dOpt1;
                 cout<<"\n\t\t\tPlease input(Remove last drink(0), Buy for Customer(1), Add drink(2), Back(9): ";
                 cin>>dOpt;
-                if(fOpt==9) goto mainScreen;
-                if(fOpt==2){
+                if(dOpt==9) goto mainScreen;
+                if(dOpt==2){
                         string aD;
                         cout<<"\t\t\t\t\tInput numbering and drink:\n\t\t\t\t\t"; getline(cin, aD);
                         AddToEnd(L2, aD);
@@ -298,7 +298,7 @@ main()
                         goto DRINK;
                         }
                 }
-                if(fOpt==1){
+                if(dOpt==1){
                         //int coca, gt, cm; (already write it)
                         int coca1, gt1, cm1;
                         system("cls");
