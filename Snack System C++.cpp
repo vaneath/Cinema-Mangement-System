@@ -1,6 +1,9 @@
 #include<iostream>
 #include<stdlib.h>
+<<<<<<< HEAD
 #include<unistd.h>
+=======
+>>>>>>> admin
 #include<fstream>
 #include<sstream>
 #include<conio.h>
@@ -279,8 +282,13 @@ main()
                 int dOpt, dOpt1;
                 cout<<"\n\t\t\tPlease input(Remove last drink(0), Buy for Customer(1), Add drink(2), Back(9): ";
                 cin>>dOpt;
+<<<<<<< HEAD
                 if(dOpt==9) goto mainScreen;
                 if(dOpt==2){
+=======
+                if(fOpt==9) goto mainScreen;
+                if(fOpt==2){
+>>>>>>> admin
                         string aD;
                         cout<<"\t\t\t\t\tInput numbering and drink:\n\t\t\t\t\t"; getline(cin, aD);
                         AddToEnd(L2, aD);
@@ -298,7 +306,11 @@ main()
                         goto DRINK;
                         }
                 }
+<<<<<<< HEAD
                 if(dOpt==1){
+=======
+                if(fOpt==1){
+>>>>>>> admin
                         //int coca, gt, cm; (already write it)
                         int coca1, gt1, cm1;
                         system("cls");

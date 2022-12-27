@@ -32,7 +32,11 @@ struct Node
     string gmail;
     string password;
 
-    Node *next;
+    string movie_name;
+    string timetable;
+    int price;
+
+    Node *next, *prev;
 };
 
 struct List
@@ -312,7 +316,7 @@ void mainRegister()
             color(Set[1]);
             cout << "No" << endl;
 
-            key = _getch();
+            key = getch();
 
             Set[0]=15; //reset color
             Set[1]=15;

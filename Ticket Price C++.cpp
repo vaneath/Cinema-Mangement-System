@@ -1,6 +1,9 @@
 #include<iostream>
 #include<stdlib.h>
+<<<<<<< HEAD
 #include<unistd.h>
+=======
+>>>>>>> admin
 #include<fstream>
 #include<sstream>
 #include<conio.h>
