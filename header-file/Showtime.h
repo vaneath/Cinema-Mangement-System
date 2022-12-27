@@ -1,5 +1,4 @@
 #include <ctime>
-#include"seat.h"
 using namespace std;
 
 /*int getTimeAndModify() {

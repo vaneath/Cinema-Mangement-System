@@ -170,7 +170,7 @@ void mainLogin()
         {
             gotoxy(55, 4);
             for(int i = 0; i < 8; i++) cout << " ";
-            mainMenu();
+            CinemaMenu();
             return;
         }
 

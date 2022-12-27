@@ -1,4 +1,3 @@
-#include"conf_food.h"
 using namespace std;
 void FoodMenu()
 {

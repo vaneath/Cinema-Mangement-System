@@ -1,4 +1,3 @@
-#include"showtime.h"
 using namespace std;
 void NowShowing()
 {

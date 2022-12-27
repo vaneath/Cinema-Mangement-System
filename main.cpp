@@ -4,19 +4,19 @@
 
 #include "header-file/registration.h"
 #include "header-file/Admin.h"
-#include "header-file/login.h"
-#include "header-file/snack.h"
-#include "header-file/ticket.h"
-#include "header-file/About_us.h"
-#include "header-file/ComingSoon.h"
 #include "header-file/conf_food.h"
 #include "header-file/conf_movie.h"
 #include "header-file/seat.h"
 #include "header-file/Showtime.h"
-#include "header-file/Setting.h"
-#include "header-file/Cinema_menu.h"
 #include "header-file/Movies.h"
+#include "header-file/ComingSoon.h"
 #include "header-file/Food.h"
+#include "header-file/Setting.h"
+#include "header-file/snack.h"
+#include "header-file/ticket.h"
+#include "header-file/About_us.h"
+#include "header-file/Cinema_menu.h"
+#include "header-file/login.h"
 
 
 using namespace std;
@@ -32,7 +32,7 @@ void mainDisplay()
     while(1)
     {
 
-        gotoxy(X+10, Y);
+        gotoxy(19, 1);
         color(11);
         cout<<"*** ";
         color(3);
