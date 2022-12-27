@@ -9,7 +9,7 @@ void confirm_movie()
 
     while(running)
     {
-        gotoXY(10,1);
+        gotoxy(10,1);
         color(11);
         cout<<"*** ";
         color(3);
@@ -17,47 +17,47 @@ void confirm_movie()
         color(11);
         cout<<" ***";
 
-                gotoXY(8,0);           //box outside cadt cinema;       left upper corner
+                gotoxy(8,0);           //box outside cadt cinema;       left upper corner
                 cout<<char(201);
-                gotoXY(8,1);
+                gotoxy(8,1);
                 cout<<char(186);
-                gotoXY(8,2);                                //left lower corner
+                gotoxy(8,2);                                //left lower corner
                 cout<<char(200);
 
                 for(int i=9; i<36; i++)                     //straight upper horizontal line
                 {
-                    gotoXY(i,0);
+                    gotoxy(i,0);
                     cout<<char(205);
                 }
 
                 for(int i=9; i<36; i++)                     //straight lower horizontal line
                 {
-                    gotoXY(i,2);
+                    gotoxy(i,2);
                     cout<<char(205);
                 }
 
-                gotoXY(35,0);                               //Right upper corner
+                gotoxy(35,0);                               //Right upper corner
                 cout<<char(187);
-                gotoXY(35,1);
+                gotoxy(35,1);
                 cout<<char(186);
-                gotoXY(35,2);
+                gotoxy(35,2);
                 cout<<char(188);                             //Right lower corner
 
-        gotoXY(9,4);
+        gotoxy(9,4);
         color(15);
         cout<<"Movie: ";
-        gotoXY(9,5);
+        gotoxy(9,5);
         cout<<"Time: ";
-        gotoXY(9,6);
+        gotoxy(9,6);
         cout<<"Seat: ";
-        gotoXY(9,7);
+        gotoxy(9,7);
         cout<<"Total Price: "<<endl;
 
-        gotoXY(10,10);
+        gotoxy(10,10);
         color(Set[0]);
         cout<<"Confirm";
 
-        gotoXY(22,10);
+        gotoxy(22,10);
         color(Set[1]);
         cout<<"Back";
 

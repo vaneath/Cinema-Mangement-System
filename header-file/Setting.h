@@ -8,7 +8,7 @@ void ChangeSetting()
 
     while(running)
     {
-        gotoXY(10,1);
+        gotoxy(10,1);
         color(11);
         cout<<"*** ";
         color(3);
@@ -16,57 +16,57 @@ void ChangeSetting()
         color(11);
         cout<<" ***";
 
-            gotoXY(8,0);           //box outside cadt cinema;       left upper corner
+            gotoxy(8,0);           //box outside cadt cinema;       left upper corner
             cout<<char(201);
-            gotoXY(8,1);
+            gotoxy(8,1);
             cout<<char(186);
-            gotoXY(8,2);                                //left lower corner
+            gotoxy(8,2);                                //left lower corner
             cout<<char(200);
 
             for(int i=9; i<26; i++)                     //straight upper horizontal line
             {
-                gotoXY(i,0);
+                gotoxy(i,0);
                 cout<<char(205);
             }
 
             for(int i=9; i<26; i++)                     //straight lower horizontal line
             {
-                gotoXY(i,2);
+                gotoxy(i,2);
                 cout<<char(205);
             }
 
-            gotoXY(26,0);                               //Right upper corner
+            gotoxy(26,0);                               //Right upper corner
             cout<<char(187);
-            gotoXY(26,1);
+            gotoxy(26,1);
             cout<<char(186);
-            gotoXY(26,2);
+            gotoxy(26,2);
             cout<<char(188);                             //Right lower corner
 
-        gotoXY(9,4);
+        gotoxy(9,4);
         color(Set[5]);
         cout<<char(box);
         color(Set[0]);
         cout<<" Change Name";
 
-        gotoXY(9,6);
+        gotoxy(9,6);
         color(Set[5]);
         cout<<char(box);
         color(Set[1]);
         cout<<" Change Password";
 
-        gotoXY(9,8);
+        gotoxy(9,8);
         color(Set[5]);
         cout<<char(box);
         color(Set[2]);
         cout<<" Change Phone-Number";
 
-        gotoXY(9,10);
+        gotoxy(9,10);
         color(Set[5]);
         cout<<char(box);
         color(Set[3]);
         cout<<" Change Email";
 
-        gotoXY(10,13);
+        gotoxy(10,13);
         color(Set[4]);
         cout<<"Back";
 

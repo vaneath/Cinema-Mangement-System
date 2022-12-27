@@ -1,4 +1,3 @@
-#include"conf_movie.h"
 using namespace std;
 void ChooseSeat()
 {
@@ -9,7 +8,7 @@ void ChooseSeat()
     while(running)
     {
         system("cls");
-        gotoXY(10,1);
+        gotoxy(10,1);
         color(11);
         cout<<"*** ";
         color(3);
@@ -17,36 +16,36 @@ void ChooseSeat()
         color(11);
         cout<<" ***";
 
-                gotoXY(8,0);           //box outside cadt cinema;       left upper corner
+                gotoxy(8,0);           //box outside cadt cinema;       left upper corner
                 cout<<char(201);
-                gotoXY(8,1);
+                gotoxy(8,1);
                 cout<<char(186);
-                gotoXY(8,2);                                //left lower corner
+                gotoxy(8,2);                                //left lower corner
                 cout<<char(200);
 
                 for(int i=9; i<30; i++)                     //straight upper horizontal line
                 {
-                    gotoXY(i,0);
+                    gotoxy(i,0);
                     cout<<char(205);
                 }
 
                 for(int i=9; i<30; i++)                     //straight lower horizontal line
                 {
-                    gotoXY(i,2);
+                    gotoxy(i,2);
                     cout<<char(205);
                 }
 
-                gotoXY(30,0);                               //Right upper corner
+                gotoxy(30,0);                               //Right upper corner
                 cout<<char(187);
-                gotoXY(30,1);
+                gotoxy(30,1);
                 cout<<char(186);
-                gotoXY(30,2);
+                gotoxy(30,2);
                 cout<<char(188);                             //Right lower corner
 
         int j=7;
         for(int i=65; i<73; i++)        //cout A to H row order
         {
-            gotoXY(9,j);
+            gotoxy(9,j);
             color(15);
             cout<<char(i)<<endl;
             j+=2;
@@ -56,7 +55,7 @@ void ChooseSeat()
         j=16;
         for(int i=1; i<10; i++)        // cout 1 to 8 column order
         {
-            gotoXY(j,4);
+            gotoxy(j,4);
             color(15);
             cout<<i<<endl;
             j+=3;
@@ -69,13 +68,13 @@ void ChooseSeat()
             {
                 if(j==hor && i==ver)
                 {
-                    gotoXY(j,i);
+                    gotoxy(j,i);
                     color(12);
                     cout<<char(BlockSign);
                 }
                 else
                 {
-                    gotoXY(j,i);
+                    gotoxy(j,i);
                     color(15);
                     cout<<char(BlockSign);
                 }
@@ -85,13 +84,13 @@ void ChooseSeat()
 
         if(ver==23)
         {
-            gotoXY(26,24);
+            gotoxy(26,24);
             color(12);
             cout<<"Back";
         }
         else
         {
-            gotoXY(26,24);
+            gotoxy(26,24);
             color(15);
             cout<<"Back";
         }

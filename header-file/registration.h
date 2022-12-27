@@ -32,6 +32,7 @@ struct Node
     string gmail;
     string password;
     string data;
+    string movie, time, date, food, Name, Gmail, password;
 
     string movie_name;
     string timetable;

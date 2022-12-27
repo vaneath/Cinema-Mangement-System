@@ -29,7 +29,7 @@ void showtimePrice()
 
     while(running)
     {
-        gotoXY(10,1);
+        gotoxy(10,1);
         color(11);
         cout<<"*** ";
         color(3);
@@ -37,39 +37,39 @@ void showtimePrice()
         color(11);
         cout<<" ***";
 
-                gotoXY(8,0);           //box outside cadt cinema;       left upper corner
+                gotoxy(8,0);           //box outside cadt cinema;       left upper corner
                 cout<<char(201);
-                gotoXY(8,1);
+                gotoxy(8,1);
                 cout<<char(186);
-                gotoXY(8,2);                                //left lower corner
+                gotoxy(8,2);                                //left lower corner
                 cout<<char(200);
 
                 for(int i=9; i<27; i++)                     //straight upper horizontal line
                 {
-                    gotoXY(i,0);
+                    gotoxy(i,0);
                     cout<<char(205);
                 }
 
                 for(int i=9; i<27; i++)                     //straight lower horizontal line
                 {
-                    gotoXY(i,2);
+                    gotoxy(i,2);
                     cout<<char(205);
                 }
 
-                gotoXY(27,0);                               //Right upper corner
+                gotoxy(27,0);                               //Right upper corner
                 cout<<char(187);
-                gotoXY(27,1);
+                gotoxy(27,1);
                 cout<<char(186);
-                gotoXY(27,2);
+                gotoxy(27,2);
                 cout<<char(188);                             //Right lower corner
 
-            gotoXY(40,1);
+            gotoxy(40,1);
             color(15);
             cout<<"Price";
-            gotoXY(55,1);
+            gotoxy(55,1);
             cout<<"Type";
 
-        gotoXY(9,4);
+        gotoxy(9,4);
         color(11);
         cout<<"*** ";
         color(3);
@@ -77,29 +77,29 @@ void showtimePrice()
         color(11);
         cout<<" ***";
 
-        gotoXY(9,6);
+        gotoxy(9,6);
         color(Set[5]);
         cout<<char(box);
         color(Set[0]);
         cout<<" "<< (1+ltm->tm_hour)%24 << ":20-" << (3+ltm->tm_hour)%24 << ":10";             // struct tm is in ctime header file, containing a calendar date and time broken down into its components
                                                                                                             // lt->tm_hour only call struct hour, we can modify the hour we call like shown (1 + ltm->tm_hour)
-            gotoXY(40,6);                                                                                   // all of those % 24 so the time cannot pass 24h
+            gotoxy(40,6);                                                                                   // all of those % 24 so the time cannot pass 24h
             cout<<"3.5$";
-            gotoXY(55,6);
+            gotoxy(55,6);
             cout<<"3D";
 
-        gotoXY(9,8);
+        gotoxy(9,8);
         color(Set[5]);
         cout<<char(box);
         color(Set[1]);
         cout<<" "<< (4+ltm->tm_hour)%24 << ":15-" << (6+ltm->tm_hour)%24 << ":15";
 
-            gotoXY(40,8);
+            gotoxy(40,8);
             cout<<"3$";
-            gotoXY(55,8);
+            gotoxy(55,8);
             cout<<"2D";
 
-        gotoXY(9,10);
+        gotoxy(9,10);
         color(11);
         cout<<"*** ";
         color(3);
@@ -107,29 +107,29 @@ void showtimePrice()
         color(11);
         cout<<" ***";
 
-        gotoXY(9,12);
+        gotoxy(9,12);
         color(Set[5]);
         cout<<char(box);
         color(Set[2]);
         cout<<" "<< (2+ltm->tm_hour)%24 << ":45-" << (4+ltm->tm_hour)%24 << ":15";
 
-            gotoXY(40,12);
+            gotoxy(40,12);
             cout<<"3$";
-            gotoXY(55,12);
+            gotoxy(55,12);
             cout<<"2D";
 
-        gotoXY(9,14);
+        gotoxy(9,14);
         color(Set[5]);
         cout<<char(box);
         color(Set[3]);
         cout<<" "<< (3+ltm->tm_hour)%24 << ":10-" << (5+ltm->tm_hour)%24 << ":20";
 
-            gotoXY(40,14);
+            gotoxy(40,14);
             cout<<"3.5$";
-            gotoXY(55,14);
+            gotoxy(55,14);
             cout<<"3D";
 
-        gotoXY(10,17);
+        gotoxy(10,17);
         color(Set[4]);
         cout<<"Back";
 
