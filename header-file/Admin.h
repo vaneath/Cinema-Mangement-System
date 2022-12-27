@@ -9,6 +9,9 @@ using namespace std;
 
 fstream MovieFile;
 
+void snackDisplay();
+void ticketDisplay();
+
 void readMovie(List *ls)
 {
     Node *movie;
@@ -596,13 +599,11 @@ void AdminMenu()
             }
             if (counter == 1)
             {
-                system("cls");
-                cout << "No data yet" << getch();
+                snackDisplay();
             }
             if (counter == 2)
             {
-                system("cls");
-                cout << "No data yet" << getch();
+                ticketDisplay();
             }
             if (counter == 3)
             {

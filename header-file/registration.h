@@ -31,6 +31,7 @@ struct Node
     string phone;
     string gmail;
     string password;
+    string data;
 
     string movie_name;
     string timetable;

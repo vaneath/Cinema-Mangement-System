@@ -3,19 +3,22 @@
 #include <cwchar>
 
 #include "header-file/registration.h"
-#include "header-file/login.h"
 #include "header-file/Admin.h"
+#include "header-file/login.h"
 #include "header-file/menu.h"
+#include "header-file/snack.h"
+#include "header-file/ticket.h"
 
 using namespace std;
 
-void mainDispaly()
+void mainDisplay()
 {
     int Set[]={12,15,15,15,6};      //15 default value, last index use for block color
     int counter=0, BlockSign=254;
     char key;
 
     system("cls");
+    
     while(1)
     {
 
@@ -87,14 +90,14 @@ void mainDispaly()
             {
                 system("cls");
                 mainLogin();
-                mainDispaly();
+                mainDisplay();
                 break;
             }
             if(counter==1)
             {
                 system("cls");
                 mainRegister();
-                mainDispaly();
+                mainDisplay();
                 break;
             }
             if(counter==2)
@@ -109,6 +112,6 @@ void mainDispaly()
 
 main()
 { 
-    mainDispaly();
+    mainDisplay();
     return 0;
 }
