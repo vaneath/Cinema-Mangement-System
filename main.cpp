@@ -139,7 +139,8 @@ void mainDisplay()
             if(counter==2)
             {
                 system("cls");
-                cout << "About us";
+                AboutUs();
+                mainDisplay();
                 break;
             }
         }
