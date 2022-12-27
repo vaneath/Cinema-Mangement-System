@@ -2,24 +2,26 @@
 #include<conio.h>
 #include <cwchar>
 
-#include "header-file/color.h"
 #include "header-file/registration.h"
+#include "header-file/Admin.h"
 #include "header-file/login.h"
-#include "header-file/menu.h"
-#include "header-file/About_us.h"
+#include "header-file/snack.h"
+#include "header-file/ticket.h"
 
 using namespace std;
 
-void mainDispaly()
+void mainDisplay()
 {
-    int Set[]={12,15,15,6};      //15 default value, last index use for block color
+    int Set[]={12,15,15,15,6};      //15 default value, last index use for block color
     int counter=0, BlockSign=254;
     char key;
 
     system("cls");
+    
     while(1)
     {
-        gotoXY(19, 1);
+
+        gotoxy(X+10, Y);
         color(11);
         cout<<"*** ";
         color(3);
@@ -27,56 +29,56 @@ void mainDispaly()
         color(11);
         cout<<" ***";
 
-            gotoXY(17,0);           //box outside cadt cinema;       left upper corner
+            gotoxy(17,0);           //box outside cadt cinema;       left upper corner
             cout<<char(201);
-            gotoXY(17,1);
+            gotoxy(17,1);
             cout<<char(186);
-            gotoXY(17,2);                                //left lower corner
+            gotoxy(17,2);                                //left lower corner
             cout<<char(200);
 
             for(int i=18; i<39; i++)                     //straight upper horizontal line
             {
-                gotoXY(i,0);
+                gotoxy(i,0);
                 cout<<char(205);
             }
 
             for(int i=18; i<39; i++)                     //straight lower horizontal line
             {
-                gotoXY(i,2);
+                gotoxy(i,2);
                 cout<<char(205);
             }
 
-            gotoXY(39,0);                               //Right upper corner
+            gotoxy(39,0);                               //Right upper corner
             cout<<char(187);
-            gotoXY(39,1);
+            gotoxy(39,1);
             cout<<char(186);
-            gotoXY(39,2);
+            gotoxy(39,2);
             cout<<char(188);                             //Right lower corner
 
-        gotoXY(9, 4);
+        gotoxy(9, 4);
         color(Set[3]);
         cout<<char(BlockSign);
         color(Set[0]);
         cout << "\t\t  Login";
-        gotoXY(47, 4);
+        gotoxy(47, 4);
         color(Set[3]);
         cout<<char(BlockSign);
 
-        gotoXY(9, 6);
+        gotoxy(9, 6);
         color(Set[3]);
         cout<<char(BlockSign);
         color(Set[1]);
         cout << "\t\t Register";
-        gotoXY(47, 6);
+        gotoxy(47, 6);
         color(Set[3]);
         cout<<char(BlockSign);
 
-        gotoXY(9, 8);
+        gotoxy(9, 8);
         color(Set[3]);
         cout<<char(BlockSign);
         color(Set[2]);
         cout << "   About Cinema Management System";
-        gotoXY(47, 8);
+        gotoxy(47, 8);
         color(Set[3]);
         cout<<char(BlockSign);
 
@@ -85,15 +87,16 @@ void mainDispaly()
         Set[0]=15; //reset color
         Set[1]=15;
         Set[2]=15;
+        Set[3]=15;
 
-        if(key == 72 && (counter >= 1 && counter <= 2)) //72 for up arrow
+        if(key == 72 && (counter >= 1 && counter <= 3)) //72 for up arrow
         {
             counter --;
             Set[counter]=12;
             //cout<<counter;
         }
 
-        else if(key == 80 && (counter >= 0 && counter <= 1)) //80 for down arrow
+        else if(key == 80 && (counter >= 0 && counter < 2)) //80 for down arrow
         {
             counter ++;
             Set[counter]=12;
@@ -112,21 +115,20 @@ void mainDispaly()
             {
                 system("cls");
                 mainLogin();
-                mainDispaly();
+                mainDisplay();
                 break;
             }
             if(counter==1)
             {
                 system("cls");
                 mainRegister();
-                mainDispaly();
+                mainDisplay();
                 break;
             }
             if(counter==2)
             {
                 system("cls");
-                AboutUs();
-                mainDispaly();
+                cout << "About us";
                 break;
             }
         }
@@ -134,7 +136,7 @@ void mainDispaly()
 }
 
 main()
-{
-    mainDispaly();
+{ 
+    mainDisplay();
     return 0;
 }
