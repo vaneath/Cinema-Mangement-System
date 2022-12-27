@@ -135,7 +135,7 @@ void mainLogin()
                 color(10);
                 getline(cin >> ws, loginVar.loginUsername);
 
-            Password:
+        Password:
                 gotoxy(22, 6);
                 color(15);
                 cout << LoginInfoDisplay[0];

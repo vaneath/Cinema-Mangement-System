@@ -9,6 +9,7 @@ void CinemaMenu()
 
     while(running)
     {
+        system("cls");
         gotoxy(10,1);
         color(11);
         cout<<"*** ";

@@ -160,6 +160,7 @@ void displayNowShowing(List *ls)
 
         cout << "\t\t\t\t\t" << tmp->movie_name << "\t " << tmp->price;
         displayTimetable(ls);
+        cout << endl; 
         tmp = tmp->next;
     }
 }
@@ -476,8 +477,8 @@ MainMenu:
                 system("cls");
                 cout << "\t\t\t\t\tTHIS IS THE LIST OF UPCOMING MOVIES YOU HAVE ADDED\n";
                 displayUpcoming(Upcoming);
-                cout << "\n\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<";
-                MovieMenu();
+                cout << "\n\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<" << getch();
+                goto MainMenu;
             }
             if (counter == 5)
             {
@@ -495,6 +496,7 @@ MainMenu:
                 string search;
                 system("cls");
                 cout << "Please input the name of the upcoming movie to delete it from the list:  ";
+                getline(cin >> ws, search);
                 deleteUpcoming(Upcoming, search);
                 cout << "\t\t\t\t\t>>>>>>>Pressed any key to go back to main menu<<<<<<<<<<<<<<";
                 getch();
