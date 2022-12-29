@@ -69,8 +69,8 @@ bool checkLoginAdmin()
 
 void mainLogin()
 {
-    char p, password[30];
-    int s=0;
+    int i;
+    char c, password[30];
 
     system("cls");
     while(1)
@@ -89,36 +89,44 @@ void mainLogin()
             color(11);
             cout<<" ***";
 
-                color(11);
-                gotoxy(22,0);           //box outside cadt cinema;       left upper corner
-                cout<<char(201);
-                gotoxy(22,1);
-                cout<<char(186);
-                gotoxy(22,2);                                //left lower corner
-                cout<<char(200);
+            color(11);
+            gotoxy(22,0);           //box outside cadt cinema;       left upper corner
+            cout<<char(201);
+            gotoxy(22,1);
+            cout<<char(186);
+            gotoxy(22,2);                                //left lower corner
+            cout<<char(200);
 
-                for(int i=23; i<54; i++)                     //straight upper horizontal line
-                {
-                    gotoxy(i,0);
-                    cout<<char(205);
-                }
+            for(int i=23; i<54; i++)                     //straight upper horizontal line
+            {
+                gotoxy(i,0);
+                cout<<char(205);
+            }
 
-                for(int i=23; i<54; i++)                     //straight lower horizontal line
-                {
-                    gotoxy(i,2);
-                    cout<<char(205);
-                }
+            for(int i=23; i<54; i++)                     //straight lower horizontal line
+            {
+                gotoxy(i,2);
+                cout<<char(205);
+            }
 
-                gotoxy(54,0);                               //Right upper corner
-                cout<<char(187);
-                gotoxy(54,1);
-                cout<<char(186);
-                gotoxy(54,2);
-                cout<<char(188);                             //Right lower corner
+            gotoxy(54,0);                               //Right upper corner
+            cout<<char(187);
+            gotoxy(54,1);
+            cout<<char(186);
+            gotoxy(54,2);
+            cout<<char(188);                             //Right lower corner
 
             gotoxy(22, 4);
             color(6);
-            cout<<"Press Enter to start input"<<endl;
+            cout<<"Press ";
+            color(12);
+            cout << "Enter ";
+            color(6);
+            cout << "to start input or ";
+            color(12);
+            cout << "Esc ";
+            color(6);
+            cout << "to go back" << endl;
 
             gotoxy(22, 6);
             color(15);
@@ -126,47 +134,56 @@ void mainLogin()
 
             if(getch() == 27) return;
 
-                gotoxy(9, 1);
-                color(15);
-                cout << "Esc";
-                gotoxy(22, 6);
-                color(12);
-                cout << LoginInfoDisplay[0];
-                color(10);
-                getline(cin >> ws, loginVar.loginUsername);
+            gotoxy(9, 1);
+            color(15);
+            cout << "Esc";
+            gotoxy(22, 6);
+            color(12);
+            cout << LoginInfoDisplay[0];
+            color(10);
+            getline(cin >> ws, loginVar.loginUsername);
 
         Password:
-                gotoxy(22, 6);
-                color(15);
-                cout << LoginInfoDisplay[0];
-                gotoxy(22, 8);
-                color(12);
-                cout << LoginInfoDisplay[1];
-//                if(getch() == 27) return;
-                color(10);
-
-                while (p != 13)
-                {
-                    p = _getch();
-                    if (p != 13)
-                    {
-                    putch('*');
-                    password[s]=p;
-                    s++;
-                    }
-                }
-            loginVar.loginPassword=password;
-
-        if(checkLoginInfo() == false)
-        {
-            gotoxy(55, 8);
+            gotoxy(9, 1);
             color(12);
-            cout << "No data!";
-            memset(password,0,30);
-            s=0;
-            p=0;
-        }
-        else
+            cout << "Esc";
+
+            gotoxy(22, 8);
+            color(15);
+            cout << LoginInfoDisplay[1];
+
+            if(getch() == 27) return;
+
+            gotoxy(9, 1);
+            color(15);
+            cout << "Esc";
+            gotoxy(22, 8);
+            color(12);
+            cout << LoginInfoDisplay[1];
+            color(10);
+
+            for(i=0;(c=getch())!='\r';)
+            {
+                //checking wheter the entered character is backspace  NOTE: ASCII value for '\b' is 8
+                if(c!=8)
+                {
+                    password[i]=c;
+                    putch('*');
+                    i++;
+                }
+                else
+                {
+                    i--;
+                    if(i<0)
+                        i++;
+                    else
+                        printf("\b \b"); //implementing the effect of backspace
+                }
+            }
+            password[i]='\0'; //terminating the password string 
+            loginVar.loginPassword = password;
+
+        if(checkLoginInfo() == true)
         {
             gotoxy(55, 4);
             for(int i = 0; i < 8; i++) cout << " ";
@@ -174,17 +191,19 @@ void mainLogin()
             return;
         }
 
-        if(checkLoginAdmin() == false)
+        else if(checkLoginAdmin() == false)
         {
             gotoxy(X+16, Y+2);
             for(int i = 0; i < (loginVar.loginUsername).length(); i++) cout << " ";
             gotoxy(X+16, Y+4);
             for(int i = 0; i < (loginVar.loginPassword).length(); i++) cout << " ";
-            gotoxy(X+35, Y+4);
+            gotoxy(55, 8);
             color(12);
-            cout << "No data!";
+            cout << "No data!" << getch();
+            memset(password,0,30);
             goto Username;
         }
+
         else
         {
             gotoxy(X+35, Y+4);

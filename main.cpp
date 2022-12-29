@@ -67,33 +67,33 @@ void mainDisplay()
             cout<<char(188);                             //Right lower corner
 
         gotoxy(9, 4);
-        color(Set[3]);
+        color(6);
         cout<<char(BlockSign);
         color(Set[0]);
         cout << "\t\t  Login";
         gotoxy(47, 4);
-        color(Set[3]);
+        color(6);
         cout<<char(BlockSign);
 
         gotoxy(9, 6);
-        color(Set[3]);
+        color(6);
         cout<<char(BlockSign);
         color(Set[1]);
         cout << "\t\t Register";
         gotoxy(47, 6);
-        color(Set[3]);
+        color(6);
         cout<<char(BlockSign);
 
         gotoxy(9, 8);
-        color(Set[3]);
+        color(6);
         cout<<char(BlockSign);
         color(Set[2]);
         cout << "   About Cinema Management System";
         gotoxy(47, 8);
-        color(Set[3]);
+        color(6);
         cout<<char(BlockSign);
 
-        key = _getch();
+        key = getch();
 
         Set[0]=15; //reset color
         Set[1]=15;

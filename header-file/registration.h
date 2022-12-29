@@ -227,7 +227,15 @@ void mainRegister()
 
             gotoxy(22, 4);
             color(6);
-            cout<<"Press Enter to start input"<<endl;
+            cout<<"Press ";
+            color(12);
+            cout << "Enter ";
+            color(6);
+            cout << "to start input or ";
+            color(12);
+            cout << "Esc ";
+            color(6);
+            cout << "to go back" << endl;
 
         gotoxy(22, 6);
         color(15);
