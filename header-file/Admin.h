@@ -53,7 +53,7 @@ void StoreNowShowing(List *ls)
     MovieFile.open("Movie.txt", ios::out);
     while (tmp != NULL)
     {
-        MovieFile << tmp -> movie_name  << tmp -> price;
+        MovieFile << tmp -> movie_name;
         tmp = tmp->next;
     }
     MovieFile.close();
@@ -73,12 +73,12 @@ void Storeupcoming(List *ls)
     MovieFile.close();
 }
 
-void insertMovie(List *ls, string nowShowing, int Cprice)
+void insertMovie(List *ls, string nowShowing)
 {
     Node *movie = new Node();
 
     movie->movie_name = nowShowing;
-    movie->price = Cprice;
+   // movie->price = Cprice;
 
     movie->next = NULL;
     movie->prev = NULL;
@@ -142,7 +142,7 @@ void insertUpcoming(List *ls, string Upcoming)
     Storeupcoming(ls);
 }
 
-void displayTimetable(List *ls)
+/*void displayTimetable(List *ls)
 {
     Node *tmp = ls -> head;
     while (tmp != NULL)
@@ -150,7 +150,7 @@ void displayTimetable(List *ls)
         cout << tmp->timetable << " | ";
         tmp = tmp->next;
     }
-}
+}*/
 
 void displayNowShowing(List *ls)
 {
@@ -158,8 +158,8 @@ void displayNowShowing(List *ls)
     while (tmp != NULL)
     {
 
-        cout << "\t\t\t\t\t" << tmp->movie_name << "\t " << tmp->price;
-        displayTimetable(ls);
+        cout << "\t\t\t\t\t" << tmp->movie_name ;
+       // displayTimetable(ls);
         cout << endl; 
         tmp = tmp->next;
     }
@@ -295,18 +295,18 @@ void InputNowShowing(List *ls)
     cout << "\t\t\t\t\tPlease enter the movie that you want to add : ";
     getline(cin >> ws, nameMovie);
     cout << endl;
-    cout << "\t\t\t\t\tPlease set the price for the of the ticket: ";
-    cin >> inPrice;
-    cout << "\t\t\t\t\tHow many time do you want the movie put on screening: ";
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        cout << "Please enter the timetable for the movie screening : ";
-        getline(cin >> ws, timeAvailible);
-        insertTimetable(ls, timeAvailible);
-    }
+    //cout << "\t\t\t\t\tPlease set the price for the of the ticket: ";
+    //cin >> inPrice;
+    //cout << "\t\t\t\t\tHow many time do you want the movie put on screening: ";
+    //cin >> n;
+   // for (int i = 0; i < n; i++)
+   // {
+   //     cout << "Please enter the timetable for the movie screening : ";
+   //     getline(cin >> ws, timeAvailible);
+   //     insertTimetable(ls, timeAvailible);
+   // }
 
-    insertMovie(ls, nameMovie, inPrice);
+    insertMovie(ls, nameMovie);
 }
 
 void InputUpcoming(List *ls)
