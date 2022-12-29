@@ -12,7 +12,7 @@ fstream MovieFile;
 void snackDisplay();
 void ticketDisplay();
 
-int movieScreening = 0;
+int movieScreening;
 
 void readMovie(List *ls)
 {
@@ -55,8 +55,8 @@ void StoreNowShowing(List *ls)
     MovieFile.open("Movie.txt", ios::out);
     while (tmp != NULL)
     {
-        MovieFile << tmp -> movie_name << " ";
-        for(int i = 0; i < movieScreening; i++)
+        MovieFile << tmp -> movie_name << "\t\t\t";
+        for(int i = 0; i < tmp -> size; i++)
         {
             MovieFile << tmp -> timetable[i] << " | ";
         }
@@ -85,6 +85,7 @@ void insertMovie(List *ls, string nowShowing, string ctimetable[])
     Node *movie = new Node();
 
     movie->movie_name = nowShowing;
+    movie->size = movieScreening;
     for(int i = 0; i < movieScreening; i++)
     {
         movie->timetable[i] = ctimetable[i];
@@ -146,7 +147,8 @@ void insertUpcoming(List *ls, string Upcoming)
 void displayNowShowing(List *ls)
 {
     Node *tmp = ls->head;
-    cout << "\t\t\t\t\tMoive List:" << endl;
+    cout << "\t\t\t\t\tMoive List:\t\t";
+    cout << "Showtime:" << endl;
     MovieFile.open("Movie.txt", ios::in);
 
     if(!MovieFile.is_open())
@@ -288,16 +290,18 @@ void deleteUpcoming(List *ls, string search_name)
 
 void InputNowShowing(List *ls)
 {
+    InputName:
+    system("cls");
     string nameMovie;
     string timeAvailible[10];
     int n;
     int inPrice;
-    cout << "\t\t\t\t\tPlease enter the movie that you want to add : ";
+    cout << "\t\tPlease enter the movie (No more than 7 character): ";
     getline(cin >> ws, nameMovie);
-    cout << endl;
-    cout << "\t\t\t\t\tPlease set the price for the of the ticket: ";
+    if(nameMovie.length() > 7) goto InputName;
+    cout << "\t\tPlease set the price for the of the ticket: ";
     cin >> inPrice;
-    cout << "\t\t\t\t\tHow many time do you want the movie put on screening: ";
+    cout << "\t\tHow many time do you want the movie put on screening: ";
     cin >> movieScreening;
 
    for (int i = 0; i < movieScreening; i++)

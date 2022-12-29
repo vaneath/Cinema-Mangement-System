@@ -36,7 +36,7 @@ struct Node
 
     string movie_name;
     string timetable[10];
-    int price;
+    int price, size;
 
     Node *next, *prev;
 };
