@@ -12,6 +12,8 @@ fstream MovieFile;
 void snackDisplay();
 void ticketDisplay();
 
+int movieScreening = 0;
+
 void readMovie(List *ls)
 {
     Node *movie;
@@ -53,7 +55,12 @@ void StoreNowShowing(List *ls)
     MovieFile.open("Movie.txt", ios::out);
     while (tmp != NULL)
     {
-        MovieFile << tmp -> movie_name;
+        MovieFile << tmp -> movie_name << " ";
+        for(int i = 0; i < movieScreening; i++)
+        {
+            MovieFile << tmp -> timetable[i] << " | ";
+        }
+        MovieFile << endl;
         tmp = tmp->next;
     }
     MovieFile.close();
@@ -73,11 +80,15 @@ void Storeupcoming(List *ls)
     MovieFile.close();
 }
 
-void insertMovie(List *ls, string nowShowing)
+void insertMovie(List *ls, string nowShowing, string ctimetable[])
 {
     Node *movie = new Node();
 
     movie->movie_name = nowShowing;
+    for(int i = 0; i < movieScreening; i++)
+    {
+        movie->timetable[i] = ctimetable[i];
+    }
    // movie->price = Cprice;
 
     movie->next = NULL;
@@ -86,38 +97,16 @@ void insertMovie(List *ls, string nowShowing)
     if (ls->index == 0)
     {
         ls ->head = movie;
-        ls->tail = movie;
     }
     else
     {
-        ls->tail->next = movie;
         movie->prev = ls->tail;
-        ls->tail = movie;
+        ls->tail->next = movie;
     }
+    ls->tail = movie;
     ls->index = ls->index + 1;
 
     StoreNowShowing(ls);
-}
-
-void insertTimetable(List *ls, string ctimetable)
-{
-    Node *movie = new Node;
-    movie->timetable = ctimetable;
-    movie->next = NULL;
-    movie->prev = NULL;
-
-    if (ls->index == 0)
-    {
-        ls->head = movie;
-        ls->tail = movie;
-    }
-    else
-    {
-        ls->tail->next = movie;
-        movie->prev = ls->tail;
-        ls->tail = movie;
-    }
-    ls->index = ls->index + 1;
 }
 
 void insertUpcoming(List *ls, string Upcoming)
@@ -129,40 +118,50 @@ void insertUpcoming(List *ls, string Upcoming)
 
     if (ls->index == 0)
     {
-        ls->head = movie;
-        ls->tail = movie;
+        ls ->head = movie;
     }
     else
     {
-        ls->tail->next = movie;
         movie->prev = ls->tail;
-        ls->tail = movie;
+        ls->tail->next = movie;
     }
+    ls->tail = movie;
     ls->index = ls->index + 1;
     Storeupcoming(ls);
 }
 
-/*void displayTimetable(List *ls)
-{
-    Node *tmp = ls -> head;
-    while (tmp != NULL)
-    {
-        cout << tmp->timetable << " | ";
-        tmp = tmp->next;
-    }
-}*/
+// void displayTimetable(List *ls)
+// {
+//     Node *tmp = ls -> head;
+//     while (tmp != NULL)
+//     {
+//         for(int i = 0; i < tmp -> timetable->length(); i++)
+//         {
+//             cout << tmp->timetable << " | ";
+//         }    
+//         tmp = tmp->next;
+//     }
+// }
 
 void displayNowShowing(List *ls)
 {
     Node *tmp = ls->head;
-    while (tmp != NULL)
-    {
+    cout << "\t\t\t\t\tMoive List:" << endl;
+    MovieFile.open("Movie.txt", ios::in);
 
-        cout << "\t\t\t\t\t" << tmp->movie_name ;
-       // displayTimetable(ls);
-        cout << endl; 
-        tmp = tmp->next;
+    if(!MovieFile.is_open())
+        {
+        cout<<"Unable to open the file."<<endl;
+        return;
+        }
+
+    if (MovieFile.is_open()){   //checking whether the file is open
+        string tp;
+        while(getline(MovieFile, tp)){ //read data from file object and put it into string.
+        cout << "\t\t\t\t\t" << tp << "\n"; //print the data of the string
+        }
     }
+    MovieFile.close();
 }
 
 void displayUpcoming(List *ls)
@@ -286,27 +285,28 @@ void deleteUpcoming(List *ls, string search_name)
     Storeupcoming(ls);
 }
 
+
 void InputNowShowing(List *ls)
 {
     string nameMovie;
-    string timeAvailible;
+    string timeAvailible[10];
     int n;
     int inPrice;
     cout << "\t\t\t\t\tPlease enter the movie that you want to add : ";
     getline(cin >> ws, nameMovie);
     cout << endl;
-    //cout << "\t\t\t\t\tPlease set the price for the of the ticket: ";
-    //cin >> inPrice;
-    //cout << "\t\t\t\t\tHow many time do you want the movie put on screening: ";
-    //cin >> n;
-   // for (int i = 0; i < n; i++)
-   // {
-   //     cout << "Please enter the timetable for the movie screening : ";
-   //     getline(cin >> ws, timeAvailible);
-   //     insertTimetable(ls, timeAvailible);
-   // }
+    cout << "\t\t\t\t\tPlease set the price for the of the ticket: ";
+    cin >> inPrice;
+    cout << "\t\t\t\t\tHow many time do you want the movie put on screening: ";
+    cin >> movieScreening;
 
-    insertMovie(ls, nameMovie);
+   for (int i = 0; i < movieScreening; i++)
+   {
+       cout << "Please enter the timetable for the movie screening : ";
+       getline(cin >> ws, timeAvailible[i]);
+   }
+
+    insertMovie(ls, nameMovie, timeAvailible);
 }
 
 void InputUpcoming(List *ls)

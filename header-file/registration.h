@@ -35,7 +35,7 @@ struct Node
     string movie, time, date, food, Name, Gmail;
 
     string movie_name;
-    string timetable;
+    string timetable[10];
     int price;
 
     Node *next, *prev;
