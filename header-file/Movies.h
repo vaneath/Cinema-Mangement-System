@@ -1,13 +1,13 @@
 using namespace std;
 void NowShowing()
 {
-    int Set[]={12,15,15,15,15,15,15,6}; //15 default white color, last index use for movie's star color
-    int counter=0;
+    int ver=6, n=0;
     char key;
     bool running=true;
 
     while(running)
     {
+        system("cls");
         gotoxy(10,1);
         color(11);
         cout<<"*** ";
@@ -42,113 +42,64 @@ void NowShowing()
             gotoxy(30,2);
             cout<<char(188);                             //Right lower corner
 
-        gotoxy(9,4);
-        color(Set[7]);
-        cout<<"* ";
-        color(Set[0]);
-        cout<<"AVATAR 2";
+            gotoxy(8,4);
+            cout<<"Press Esc to go back!"<<endl;
 
-        gotoxy(9,6);
-        color(Set[7]);
-        cout<<"* ";
-        color(Set[1]);
-        cout<<"BLACK PANTHER";
+        MovieFile.open("Movie.txt", ios::in);
 
-        gotoxy(9,8);
-        color(Set[7]);
-        cout<<"* ";
-        color(Set[2]);
-        cout<<"AVENGER: END-GAME";
+        if(!MovieFile.is_open())
+            {
+            cout<<"Unable to open the file."<<endl;
+            return;
+            }
 
-        gotoxy(9,10);
-        color(Set[7]);
-        cout<<"* ";
-        color(Set[3]);
-        cout<<"BLACK ADAM";
+        if (MovieFile.is_open()){   //checking whether the file is open
+            string tp;
+            int counter=6;
+            
+            while(getline(MovieFile, tp)){ //read data from file object and put it into string.
+            gotoxy(9,counter);
+            color(6);
+            cout<<"* ";
 
-        gotoxy(9,12);
-        color(Set[7]);
-        cout<<"* ";
-        color(Set[4]);
-        cout<<"MORBIUS";
+            if(counter==ver)
+                {
+                    color(12);
+                    cout << tp << endl; //print the data of the string
+                }
 
-        gotoxy(9,14);
-        color(Set[7]);
-        cout<<"* ";
-        color(Set[5]);
-        cout<<"GHOST WRITER 2";
-
-        gotoxy(10,17);
-        color(Set[6]);
-        cout<<"Back";
+            else
+                {
+                    color(15);
+                    cout << tp << endl; //print the data of the string
+                }
+            counter=counter+2;
+            }
+            n=counter;
+        }
+        MovieFile.close();
 
         key = _getch();
 
-        Set[0]=15; //reset color
-        Set[1]=15;
-        Set[2]=15;
-        Set[3]=15;
-        Set[4]=15;
-        Set[5]=15;
-        Set[6]=15;
-
-        if(key == 72 && (counter >= 1 && counter <= 6)) //72 for up arrow
+        if(key == 72 && (ver >= 8 && ver <= (n-2))) //72 for up arrow
         {
-            counter --;
-            Set[counter]=12;
-            //cout<<counter;
+            ver=ver-2;
+            color(12);
         }
 
-        else if(key == 80 && (counter >= 0 && counter <= 5)) //80 for down arrow
+        else if(key == 80 && (ver >= 6 && ver <= (n-4))) //80 for down arrow
         {
-            counter ++;
-            Set[counter]=12;
-            //cout<<counter;
+            ver=ver+2;
+            color(12);
         }
 
-        else
-        {
-            Set[counter]=12;
-            //cout<<counter;
-        }
+        else if(key == 27) return;
+
 
         if(key == '\r') //carriage return for "Enter" key
         {
-            if(counter==0)
-            {
-                system("cls");
-                showtimePrice();
-            }
-            if(counter==1)
-            {
-                system("cls");
-                showtimePrice();
-            }
-            if(counter==2)
-            {
-                system("cls");
-                showtimePrice();
-            }
-            if(counter==3)
-            {
-                system("cls");
-                showtimePrice();
-            }
-            if(counter==4)
-            {
-                system("cls");
-                showtimePrice();
-            }
-            if(counter==5)
-            {
-                system("cls");
-                showtimePrice();
-            }
-            if(counter==6)
-            {
-                system("cls");
-                break;
-            }
+            system("cls");
+            ChooseSeat();
         }
     }
 }

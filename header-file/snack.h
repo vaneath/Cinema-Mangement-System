@@ -101,7 +101,7 @@ void PrintReceipt(string filename){
         getline(fl, line);
         cout<<line<<endl;
     }
-    cout<<"\n\t\t\t\t\t===================================\n";
+    cout<<"\n\t\t\t\t\t====================================\n";
     fl.close();
 }
 
@@ -111,12 +111,12 @@ void snackDisplay()
     while(1)
     {
         system("cls");
-        fl.open("Snack-List.txt",ios::out);
 
         List *L1 = createEmptyList();
         addEndSnack(L1, "1. Cheesy Corn    \t$2   /Can");
         addEndSnack(L1, "2. Fried Chicken  \t$1,5 /Piece");
         addEndSnack(L1, "3. Chocolate Bread\t$1   /Piece");
+        fl.open("Snack-List.txt",ios::app);
 
         List *L2 = createEmptyList();
         addEndSnack(L2, "1. Coca Cola  \t$0,75 /Can");
@@ -140,6 +140,8 @@ void snackDisplay()
             case 1:
                     food:
                     Food(L1);
+                    fl.open("snack-List.txt", ios::app);
+                    
 
                     int fOpt, fOpt1;
                     cout<<"\n\t\t\tPlease input(Remove last food(0), Buy for Customer(1), Add foot(2), Back(9): ";
@@ -267,7 +269,7 @@ void snackDisplay()
                     if(fOpt==9) goto mainScreen;
                     if(fOpt==2){
                             string aD;
-                            cout<<"\t\t\t\t\tInput numbering and drink:\n\t\t\t\t\t"; getline(cin, aD);
+                            cout<<"\t\t\t\t\tInput numbering, drink and price:\n\t\t\t\t\t"; cin.ignore(); getline(cin, aD);
                             addEndSnack(L2, aD);
                             Drink(L2);
                             int removeDrink;
@@ -379,7 +381,7 @@ void snackDisplay()
                     PrintReceipt("Snack-List.txt");
                     float totalCost;
                     totalCost = ccCost + fcCost + cbCost + cocaCost + gtCost + cmCost;
-                    cout<<"\n\t\t\t\t\tTotal Cost\t:\t$"<<totalCost;
+                    cout<<"\n\t\t\t\t\tTotal Cost\t:\t\t$"<<totalCost;
 
                     int ol;
                     cout<<"\n\n\t\t\t\t\t(Input 9 to go back):";
