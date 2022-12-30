@@ -90,6 +90,7 @@ void StoreNowShowing(List *ls)
     while (tmp != NULL)
     {
         MovieFile << tmp->movie_name << "\t\t\t";
+        MovieFile << tmp->price <<"$"<< "\t\t";
         for (int i = 0; i < tmp->size; i++)
         {
             MovieFile << tmp->timetable[i] << " | ";
@@ -114,12 +115,13 @@ void Storeupcoming(List *ls)
     MovieFile.close();
 }
 
-void insertMovie(List *ls, string nowShowing, string ctimetable[])
+void insertMovie(List *ls, string nowShowing, int cprice, string ctimetable[])
 {
     Node *movie = new Node();
 
     movie->movie_name = nowShowing;
     movie->size = movieScreening;
+    movie->price = cprice;
     for (int i = 0; i < movieScreening; i++)
     {
         movie->timetable[i] = ctimetable[i];
@@ -185,6 +187,7 @@ void displayNowShowing(List *ls)
 {
     Node *tmp = ls->head;
     cout << "\t\t\t\t\tMoive List:\t\t";
+    cout << "Price\t\t";
     cout << "Showtime:" << endl;
     MovieFile.open("Movie.txt", ios::in);
 
@@ -218,20 +221,22 @@ void displayUpcoming(List *ls)
     }
     MovieFile.open("Upcoming.txt", ios::in);
 
-        if(!MovieFile.is_open())
-            {
-            cout<<"Unable to open the file."<<endl;
-            return;
-            }
+    if (!MovieFile.is_open())
+    {
+        cout << "Unable to open the file." << endl;
+        return;
+    }
 
-        if (MovieFile.is_open()){   //checking whether the file is open
-            string tp;
-            
-            while(getline(MovieFile, tp)){ //read data from file object and put it into string.
-            cout << "\n\t\t\t\t\t"<< tp << endl; //print the data of the string
-            }
+    if (MovieFile.is_open())
+    { // checking whether the file is open
+        string tp;
+
+        while (getline(MovieFile, tp))
+        {                                         // read data from file object and put it into string.
+            cout << "\n\t\t\t\t\t" << tp << endl; // print the data of the string
         }
-        MovieFile.close();
+    }
+    MovieFile.close();
 }
 
 void deleteMovie(List *ls, string search_name)
@@ -366,7 +371,7 @@ InputName:
         getline(cin >> ws, timeAvailible[i]);
     }
 
-    insertMovie(ls, nameMovie, timeAvailible);
+    insertMovie(ls, nameMovie, inPrice, timeAvailible);
 }
 
 void InputUpcoming(List *ls)
