@@ -37,27 +37,19 @@ void addToTheEndTicket(List *ls, string newData){
 
 void Ticket(){
     int i, j, k, l;
-    string ticket1[9][13]={{"  ", "1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10", "11", "12"},
-                        {"I ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
-                        {"H ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
-                        {"G ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
-                        {"F ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
-                        {"E ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
-                        {"D ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
-                        {"C ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
-                        {"B ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "}};
+    string ticket1[9][13]={{"  ", "1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 "},
+                        {"I ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
+                        {"H ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
+                        {"G ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
+                        {"F ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
+                        {"E ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
+                        {"D ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
+                        {"C ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "},
+                        {"B ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x ", "x "}};
     for(i=0; i<9; i++){
         cout<<"\n\t\t\t\t\t";
-        for(j=0; j<13; j++){
+        for(j=0; j<10; j++){
             cout<<ticket1[i][j]<<" ";
-        }
-        }
-    cout<<"\n";
-    string ticket2[1][13]={"A", " xx ", "    ", " xxx ", " xx ", " xxx ", "    ", " xx "};
-    for(k=0; k<1; k++){
-        cout<<"\n\t\t\t\t\t";
-        for(l=0; l<13; l++){
-            cout<<ticket2[k][l]<<" ";
         }
         }
     cout<<"\n";
@@ -119,12 +111,6 @@ void ticketDisplay(){
         float cost2DMovie1SingleSeat, cost2DMovie2SingleSeat, cost2DMovie3SingleSeat;
         float cost3DMovie1SingleSeat, cost3DMovie2SingleSeat, cost3DMovie3SingleSeat;
 
-        float cost2DMovie1TwinSeat, cost2DMovie2TwinSeat, cost2DMovie3TwinSeat;
-        float cost3DMovie1TwinSeat, cost3DMovie2TwinSeat, cost3DMovie3TwinSeat;
-
-        float cost2DMovie1FamilySeat, cost2DMovie2FamilySeat, cost2DMovie3FamilySeat;
-        float cost3DMovie1FamilySeat, cost3DMovie2FamilySeat, cost3DMovie3FamilySeat;
-
         float storeKindOfMovie1, storeKindOfMovie2, storeKindOfMovie3;
         if(OptMovie==0) return;
         if(OptMovie==1){
@@ -157,10 +143,6 @@ void ticketDisplay(){
                             storeKindOfMovie1=2;
                             cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Single Seat)\t: $";
                             cin>>cost2DMovie1SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Twin Seat)  \t: $";
-                            cin>>cost2DMovie1TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Family Seat)\t: $";
-                            cin>>cost2DMovie1FamilySeat;
 
                             int done2DMovie1;
                             cout<<"\n\n\t\t\t\t\tSelect 9(Done): ";
@@ -173,10 +155,6 @@ void ticketDisplay(){
                             storeKindOfMovie1=3;
                             cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Single Seat)\t: $";
                             cin>>cost3DMovie1SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Twin Seat)  \t: $";
-                            cin>>cost3DMovie1TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Family Seat)\t: $";
-                            cin>>cost3DMovie1FamilySeat;
 
                             int done3DMovie1;
                             cout<<"\n\n\t\t\t\t\tSelect 9(Done): ";
@@ -189,17 +167,9 @@ void ticketDisplay(){
                             storeKindOfMovie1=2.3;
                             cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Single Seat)\t: $";
                             cin>>cost2DMovie1SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Twin Seat)  \t: $";
-                            cin>>cost2DMovie1TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Family Seat)\t: $";
-                            cin>>cost2DMovie1FamilySeat;
 
                             cout<<"\n\n\t\t\t\tPrice of This movie 3D ticket(Single Seat)\t: $";
                             cin>>cost3DMovie1SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Twin Seat)  \t: $";
-                            cin>>cost3DMovie1TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Family Seat)\t: $";
-                            cin>>cost3DMovie1FamilySeat;
 
                             int done2D3DMovie1;
                             cout<<"\n\n\t\t\t\t\tSelect 9(Done): ";
@@ -234,10 +204,6 @@ void ticketDisplay(){
                             storeKindOfMovie2=2;
                             cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Single Seat)\t: $";
                             cin>>cost2DMovie2SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Twin Seat)  \t: $";
-                            cin>>cost2DMovie2TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Family Seat)\t: $";
-                            cin>>cost2DMovie2FamilySeat;
 
                             int done2DMovie2;
                             cout<<"\n\n\t\t\t\t\tSelect 9(Done): ";
@@ -250,11 +216,6 @@ void ticketDisplay(){
                             storeKindOfMovie2=3;
                             cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Single Seat)\t: $";
                             cin>>cost3DMovie2SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Twin Seat)  \t: $";
-                            cin>>cost3DMovie2TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Family Seat)\t: $";
-                            cin>>cost3DMovie2FamilySeat;
-
                             int done3DMovie2;
                             cout<<"\n\n\t\t\t\t\tSelect 9(Done): ";
                             cin>>done3DMovie2;
@@ -266,18 +227,8 @@ void ticketDisplay(){
                             storeKindOfMovie2=2.3;
                             cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Single Seat)\t: $";
                             cin>>cost2DMovie2SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Twin Seat)  \t: $";
-                            cin>>cost2DMovie2TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Family Seat)\t: $";
-                            cin>>cost2DMovie2FamilySeat;
-
                             cout<<"\n\n\t\t\t\tPrice of This movie 3D ticket(Single Seat)\t: $";
                             cin>>cost3DMovie2SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Twin Seat)  \t: $";
-                            cin>>cost3DMovie2TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Family Seat)\t: $";
-                            cin>>cost3DMovie2FamilySeat;
-
                             int done2D3DMovie2;
                             cout<<"\n\n\t\t\t\t\tSelect 9(Done): ";
                             cin>>done2D3DMovie2;
@@ -312,10 +263,6 @@ void ticketDisplay(){
                             storeKindOfMovie3=2;
                             cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Single Seat)\t: $";
                             cin>>cost2DMovie3SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Twin Seat)  \t: $";
-                            cin>>cost2DMovie3TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Family Seat)\t: $";
-                            cin>>cost2DMovie3FamilySeat;
 
                             int done2DMovie3;
                             cout<<"\n\n\t\t\t\t\tSelect 9(Done): ";
@@ -328,11 +275,6 @@ void ticketDisplay(){
                             storeKindOfMovie3=3;
                             cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Single Seat)\t: $";
                             cin>>cost3DMovie3SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Twin Seat)  \t: $";
-                            cin>>cost3DMovie3TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Family Seat)\t: $";
-                            cin>>cost3DMovie3FamilySeat;
-
                             int done3DMovie3;
                             cout<<"\n\n\t\t\t\t\tSelect 9(Done): ";
                             cin>>done3DMovie3;
@@ -344,18 +286,9 @@ void ticketDisplay(){
                             storeKindOfMovie3=2.3;
                             cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Single Seat)\t: $";
                             cin>>cost2DMovie3SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Twin Seat)  \t: $";
-                            cin>>cost2DMovie3TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 2D ticket(Family Seat)\t: $";
-                            cin>>cost2DMovie3FamilySeat;
 
                             cout<<"\n\n\t\t\t\tPrice of This movie 3D ticket(Single Seat)\t: $";
                             cin>>cost3DMovie3SingleSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Twin Seat)  \t: $";
-                            cin>>cost3DMovie3TwinSeat;
-                            cout<<"\n\t\t\t\tPrice of This movie 3D ticket(Family Seat)\t: $";
-                            cin>>cost3DMovie3FamilySeat;
-
                             int done2D3DMovie3;
                             cout<<"\n\n\t\t\t\t\tSelect 9(Done): ";
                             cin>>done2D3DMovie3;
@@ -388,21 +321,13 @@ void ticketDisplay(){
                     cout<<"\n\t\t\t\t\tThis movie show for "<<storeKindOfMovie1<<"D.";
                     if(storeKindOfMovie1==2.3){
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost2DMovie1SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost2DMovie1TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost2DMovie1FamilySeat;
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost3DMovie1SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost3DMovie1TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost3DMovie1FamilySeat;
                     }
                     if(storeKindOfMovie1==2){
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost2DMovie1SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost2DMovie1TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost2DMovie1FamilySeat;
                     }
                     else{
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost3DMovie1SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost3DMovie1TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost3DMovie1FamilySeat;
                     }
                     int OptInSelectMovie1;
                     cout<<"\n\n\t\t\t\t\tPlease select 9 to go back: ";
@@ -425,21 +350,13 @@ void ticketDisplay(){
                     cout<<"\n\t\t\t\t\tThis movie show for "<<storeKindOfMovie2<<"D.";
                     if(storeKindOfMovie2==2.3){
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost2DMovie2SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost2DMovie2TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost2DMovie2FamilySeat;
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost3DMovie2SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost3DMovie2TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost3DMovie2FamilySeat;
                     }
                     if(storeKindOfMovie2==2){
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost2DMovie2SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost2DMovie2TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost2DMovie2FamilySeat;
                     }
                     else{
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost3DMovie2SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost3DMovie2TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost3DMovie2FamilySeat;
                     }
                     int OptInSelectMovie2;
                     cout<<"\n\n\t\t\t\t\tPlease select 9 to go back: ";
@@ -463,21 +380,13 @@ void ticketDisplay(){
                     cout<<"\n\t\t\t\t\tThis movie show for "<<storeKindOfMovie1<<"D.";
                     if(storeKindOfMovie3==2.3){
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost2DMovie3SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost2DMovie3TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost2DMovie3FamilySeat;
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost3DMovie3SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost3DMovie3TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost3DMovie3FamilySeat;
                     }
                     if(storeKindOfMovie3==2){
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost2DMovie3SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost2DMovie3TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost2DMovie3FamilySeat;
                     }
                     else{
                         cout<<"\n\t\t\t\t\tCost of Single Seat: $"<<cost3DMovie3SingleSeat;
-                        cout<<"\n\t\t\t\t\tCost of Twin Seat  : $"<<cost3DMovie3TwinSeat;
-                        cout<<"\n\t\t\t\t\tCost of Family Seat: $"<<cost3DMovie3FamilySeat;
                     }
                     int OptInSelectMovie3;
                     cout<<"\n\n\t\t\t\t\tPlease select 9 to go back: ";
