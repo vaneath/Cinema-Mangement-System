@@ -101,7 +101,7 @@ void PrintReceipt(string filename){
         getline(fl, line);
         cout<<line<<endl;
     }
-    cout<<"\n\t\t\t\t\t===================================\n";
+    cout<<"\n\t\t\t\t\t====================================\n";
     fl.close();
 }
 
