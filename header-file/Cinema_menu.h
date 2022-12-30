@@ -1,5 +1,6 @@
 using namespace std;
 
+void mainDisplay();
 void CinemaMenu()
 {
     int Set[]={12,15,15,6};      //15 default value, last index use for block color
@@ -85,7 +86,7 @@ void CinemaMenu()
         }
         else if(key == 27) //80 for down arrow
         {
-            break;
+            mainDisplay();
         }
         else
         {

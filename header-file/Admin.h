@@ -207,7 +207,6 @@ void displayNowShowing(List *ls)
 
 void displayUpcoming(List *ls)
 {
-<<<<<<< HEAD
     Node *tmp = ls->head;
     cout << "\t\t\t\t\tUpcoming List:\t\t";
     cout << "Release Date:" << endl;
@@ -217,24 +216,6 @@ void displayUpcoming(List *ls)
         cout << "\t\t\t\t\t" << tmp->movie_name << "\t\t\t\t " << tmp->day << "." << tmp->month << "." << tmp->year << endl;
         tmp = tmp->next;
     }
-=======
-    MovieFile.open("Upcoming.txt", ios::in);
-
-        if(!MovieFile.is_open())
-            {
-            cout<<"Unable to open the file."<<endl;
-            return;
-            }
-
-        if (MovieFile.is_open()){   //checking whether the file is open
-            string tp;
-            
-            while(getline(MovieFile, tp)){ //read data from file object and put it into string.
-            cout << "\n\t\t\t\t\t"<< tp << endl; //print the data of the string
-            }
-        }
-        MovieFile.close();
->>>>>>> 86efe2a42e6d7f839bb6ff4019a5a144b44e5c1f
 }
 
 void deleteMovie(List *ls, string search_name)
@@ -363,20 +344,11 @@ InputName:
     cout << "\t\tHow many time do you want the movie put on screening: ";
     cin >> movieScreening;
 
-<<<<<<< HEAD
-    for (int i = 0; i < movieScreening; i++)
-    {
-        cout << "Please enter the timetable for the movie screening : ";
-        getline(cin >> ws, timeAvailible[i]);
-    }
-
-=======
    for (int i = 0; i < movieScreening; i++)
    {
        cout << "Please enter the timetable for the movie screening : ";
        getline(cin >> ws, timeAvailible[i]);
    }
->>>>>>> 86efe2a42e6d7f839bb6ff4019a5a144b44e5c1f
     insertMovie(ls, nameMovie, timeAvailible);
 }
 

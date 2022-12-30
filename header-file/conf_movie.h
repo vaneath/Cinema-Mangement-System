@@ -1,11 +1,18 @@
+#include <sstream>
 using namespace std;
 
-void confirm_movie()
+void CinemaMenu();
+
+void confirm_movie(int h, char v)
 {
     int Set[]={12,15};
     int counter=0;
     char key;
     bool running=true;
+
+    stringstream ss;
+    ss << v << h;
+    string Seat = ss.str();
 
     while(running)
     {
@@ -45,19 +52,19 @@ void confirm_movie()
 
         gotoxy(9,4);
         color(15);
-        cout<<"Movie: ";
-        gotoxy(9,5);
-        cout<<"Time: ";
-        gotoxy(9,6);
-        cout<<"Seat: ";
-        gotoxy(9,7);
-        cout<<"Total Price: "<<endl;
+        cout<<"Name: ";
 
-        gotoxy(10,10);
+        gotoxy(9,5);
+        cout<<"Seat: "<<Seat;
+
+        gotoxy(9,6);
+        cout<<"Total Price: 3$";
+
+        gotoxy(10,8);
         color(Set[0]);
         cout<<"Confirm";
 
-        gotoxy(22,10);
+        gotoxy(22,8);
         color(Set[1]);
         cout<<"Back";
 
@@ -90,6 +97,15 @@ void confirm_movie()
             {
                 system("cls");
                 break;
+            }
+            if(counter==0)
+            {
+                system("cls");
+                gotoxy(50,5);
+                color(12);
+                cout<<"Purchase Success!";
+                getch();
+                CinemaMenu();
             }
         }
     }

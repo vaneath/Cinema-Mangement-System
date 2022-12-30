@@ -2,6 +2,7 @@ using namespace std;
 void NowShowing()
 {
     int ver=6, n=0;
+    string Movie;
     char key;
     bool running=true;
 
@@ -67,7 +68,6 @@ void NowShowing()
                     color(12);
                     cout << tp << endl; //print the data of the string
                 }
-
             else
                 {
                     color(15);

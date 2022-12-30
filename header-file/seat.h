@@ -1,9 +1,9 @@
 using namespace std;
 void ChooseSeat()
 {
-    int BlockSign=254, hor=16, ver=7;
-    char key;
-    bool running=true;
+    int BlockSign=254, hor=16, ver=7, h=1;
+    char key, v=65;
+    bool running=true, end=false;
 
     while(running)
     {
@@ -100,20 +100,25 @@ void ChooseSeat()
         if(key == 72 && (ver >= 9 && ver <= 23)) //72 for up arrow                     (hor >= 30 && hor <= 41)
         {
             ver-=2;
+            v=v-1;
         }
 
         else if(key == 80 && (ver >= 7 && ver <= 21)) //80 for down arrow
         {
             ver+=2;
+            v=v+1;
         }
         else if(key == 75 && (hor >= 19 && hor <= 40)) //80 for left arrow
         {
             hor-=3;
+            h=h-1;
         }
         else if(key == 77 && (hor >= 16 && hor <= 37)) //80 for right arrow
         {
             hor+=3;
+            h=h+1;
         }
+        else if(key == 27) return;
 
 
         if(key == '\r')
@@ -127,7 +132,7 @@ void ChooseSeat()
             if(hor<=40 && ver<= 23)
             {
                 system("cls");
-                confirm_movie();
+                confirm_movie(h,v);
             }
         }
     }

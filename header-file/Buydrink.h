@@ -100,7 +100,11 @@ void BuyDrink()
         if(key == '\r') //carriage return for "Enter" key
         {
             system("cls");
-            confirm_food(5);
-        }
+            gotoxy(50,5);
+            color(12);
+            cout<<"Bought Successful!";
+            getch();
+            CinemaMenu();
+    }
     }
 }
