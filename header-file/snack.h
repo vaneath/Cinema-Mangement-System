@@ -140,6 +140,8 @@ void snackDisplay()
             case 1:
                     food:
                     Food(L1);
+                    fl.open("snack-List.txt", ios::app);
+                    
 
                     int fOpt, fOpt1;
                     cout<<"\n\t\t\tPlease input(Remove last food(0), Buy for Customer(1), Add foot(2), Back(9): ";
