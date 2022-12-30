@@ -111,12 +111,12 @@ void snackDisplay()
     while(1)
     {
         system("cls");
-        fl.open("Snack-List.txt",ios::out);
 
         List *L1 = createEmptyList();
         addEndSnack(L1, "1. Cheesy Corn    \t$2   /Can");
         addEndSnack(L1, "2. Fried Chicken  \t$1,5 /Piece");
         addEndSnack(L1, "3. Chocolate Bread\t$1   /Piece");
+        fl.open("Snack-List.txt",ios::app);
 
         List *L2 = createEmptyList();
         addEndSnack(L2, "1. Coca Cola  \t$0,75 /Can");

@@ -1,4 +1,4 @@
-#include <ctime>
+// #include <ctime>
 using namespace std;
 
 /*int getTimeAndModify() {
@@ -23,8 +23,8 @@ void showtimePrice()
     char key;
     bool running=true;
 
-    time_t now = time(NULL);
-    tm *ltm = localtime(&now);      //pointer ltm point to localtime aka now time
+    // time_t now = time(NULL);
+    // tm *ltm = localtime(&now);      //pointer ltm point to localtime aka now time
 
     while(running)
     {
@@ -32,7 +32,7 @@ void showtimePrice()
         color(11);
         cout<<"*** ";
         color(3);
-        cout<<"SHOWTIME";
+        cout<<"Choose Time";
         color(11);
         cout<<" ***";
 
@@ -43,23 +43,23 @@ void showtimePrice()
                 gotoxy(8,2);                                //left lower corner
                 cout<<char(200);
 
-                for(int i=9; i<27; i++)                     //straight upper horizontal line
+                for(int i=9; i<30; i++)                     //straight upper horizontal line
                 {
                     gotoxy(i,0);
                     cout<<char(205);
                 }
 
-                for(int i=9; i<27; i++)                     //straight lower horizontal line
+                for(int i=9; i<30; i++)                     //straight lower horizontal line
                 {
                     gotoxy(i,2);
                     cout<<char(205);
                 }
 
-                gotoxy(27,0);                               //Right upper corner
+                gotoxy(30,0);                               //Right upper corner
                 cout<<char(187);
-                gotoxy(27,1);
+                gotoxy(30,1);
                 cout<<char(186);
-                gotoxy(27,2);
+                gotoxy(30,2);
                 cout<<char(188);                             //Right lower corner
 
             gotoxy(40,1);
@@ -68,65 +68,83 @@ void showtimePrice()
             gotoxy(55,1);
             cout<<"Type";
 
-        gotoxy(9,4);
-        color(11);
-        cout<<"*** ";
-        color(3);
-        cout<<"THEATRE 4";                                          //Hall 4
-        color(11);
-        cout<<" ***";
+        MovieFile.open("Movie.txt", ios::in);
 
-        gotoxy(9,6);
-        color(Set[5]);
-        cout<<char(box);
-        color(Set[0]);
-        cout<<" "<< (1+ltm->tm_hour)%24 << ":20-" << (3+ltm->tm_hour)%24 << ":10";             // struct tm is in ctime header file, containing a calendar date and time broken down into its components
-                                                                                                            // lt->tm_hour only call struct hour, we can modify the hour we call like shown (1 + ltm->tm_hour)
-            gotoxy(40,6);                                                                                   // all of those % 24 so the time cannot pass 24h
-            cout<<"3.5$";
-            gotoxy(55,6);
-            cout<<"3D";
+        if(!MovieFile.is_open())
+            {
+            cout<<"Unable to open the file."<<endl;
+            return;
+            }
 
-        gotoxy(9,8);
-        color(Set[5]);
-        cout<<char(box);
-        color(Set[1]);
-        cout<<" "<< (4+ltm->tm_hour)%24 << ":15-" << (6+ltm->tm_hour)%24 << ":15";
+        if (MovieFile.is_open()){   //checking whether the file is open
+            string tp, ignore;
+            int counter=6, i=2;
+            
+         if(i%2==0)
+         {
+            MovieFile>>ignore;
+            i++;
+         }
+         else if(i%2==1)
+         {
+            MovieFile>>tp;
+            i++;
+         }
+         gotoxy(9,6);
+         cout<<tp<<endl;
+         gotoxy(9,7);
+         cout<<ignore<<endl;
+            
+        // gotoxy(9,6);
+        // color(Set[5]);
+        // cout<<char(box);
+        // color(Set[0]);
+        // cout<<" "<<tp;
+        
+        //     cout<<"3$";
+        //     gotoxy(55,6);
+        //     cout<<"3D";
+        }
+        MovieFile.close();
 
-            gotoxy(40,8);
-            cout<<"3$";
-            gotoxy(55,8);
-            cout<<"2D";
+        // gotoxy(9,8);
+        // color(Set[5]);
+        // cout<<char(box);
+        // color(Set[1]);
 
-        gotoxy(9,10);
-        color(11);
-        cout<<"*** ";
-        color(3);
-        cout<<"THEATRE 2";                                  //Hall 2
-        color(11);
-        cout<<" ***";
 
-        gotoxy(9,12);
-        color(Set[5]);
-        cout<<char(box);
-        color(Set[2]);
-        cout<<" "<< (2+ltm->tm_hour)%24 << ":45-" << (4+ltm->tm_hour)%24 << ":15";
+        //     gotoxy(40,8);
+        //     cout<<"3$";
+        //     gotoxy(55,8);
+        //     cout<<"2D";
 
-            gotoxy(40,12);
-            cout<<"3$";
-            gotoxy(55,12);
-            cout<<"2D";
+        // gotoxy(9,10);
+        // color(11);
+        // cout<<"*** ";
+        // color(3);
+        // cout<<"THEATRE 2";                                  //Hall 2
+        // color(11);
+        // cout<<" ***";
 
-        gotoxy(9,14);
-        color(Set[5]);
-        cout<<char(box);
-        color(Set[3]);
-        cout<<" "<< (3+ltm->tm_hour)%24 << ":10-" << (5+ltm->tm_hour)%24 << ":20";
+        // gotoxy(9,12);
+        // color(Set[5]);
+        // cout<<char(box);
+        // color(Set[2]);
 
-            gotoxy(40,14);
-            cout<<"3.5$";
-            gotoxy(55,14);
-            cout<<"3D";
+        //     gotoxy(40,12);
+        //     cout<<"3$";
+        //     gotoxy(55,12);
+        //     cout<<"2D";
+
+        // gotoxy(9,14);
+        // color(Set[5]);
+        // cout<<char(box);
+        // color(Set[3]);
+
+        //     gotoxy(40,14);
+        //     cout<<"3.5$";
+        //     gotoxy(55,14);
+        //     cout<<"3D";
 
         gotoxy(10,17);
         color(Set[4]);
@@ -153,6 +171,8 @@ void showtimePrice()
             Set[counter]=12;
             //cout<<counter;
         }
+
+        else if(key == 27) return;
 
         else
         {

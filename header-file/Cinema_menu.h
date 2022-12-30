@@ -2,7 +2,7 @@ using namespace std;
 
 void CinemaMenu()
 {
-    int Set[]={12,15,15,15,15,6};      //15 default value, last index use for block color
+    int Set[]={12,15,15,6};      //15 default value, last index use for block color
     int counter=0, BlockSign=254;
     char key;
     bool running=true;
@@ -45,50 +45,39 @@ void CinemaMenu()
             cout<<char(188);                             //Right lower corner
 
         gotoxy(9,4);
-        color(Set[5]) ;
+        cout<<"Press Esc to go back!";
+
+        gotoxy(9,6);
+        color(Set[3]) ;
         cout<<char(BlockSign);
         color(Set[0]);
         cout<<" View All Available Movie";
 
-        gotoxy(9,6);
-        color(Set[5]);
+        gotoxy(9,8);
+        color(Set[3]);
         cout<<char(BlockSign);
         color(Set[1]);
         cout<<" Coming soon";
 
-        gotoxy(9,8);
-        color(Set[5]);
+        gotoxy(9,10);
+        color(Set[3]);
         cout<<char(BlockSign);
         color(Set[2]);
         cout<<" Buy Food & Baverage";
-
-        gotoxy(9,10);
-        color(Set[5]);
-        cout<<char(BlockSign);
-        color(Set[3]);
-        cout<<" Setting";
-
-        gotoxy(9,13);
-        color(Set[5]);
-        cout<<char(BlockSign);
-        color(Set[4]);
-        cout<<" Back";
 
         key = getch();
 
         Set[0]=15; //reset color
         Set[1]=15;
         Set[2]=15;
-        Set[3]=15;
-        Set[4]=15;
 
-        if(key == 72 && (counter >= 1 && counter <= 4)) //72 for up arrow
+        if(key == 72 && (counter >= 1 && counter <= 2)) //72 for up arrow
         {
             counter --;
             Set[counter]=12;
             //cout<<counter;
         }
-        else if(key == 80 && (counter >= 0 && counter <= 3)) //80 for down arrow
+        else if(key == 80 && (counter >= 0 && counter <= 1)) //80 for down arrow
         {
             counter ++;
             Set[counter]=12;
@@ -120,16 +109,6 @@ void CinemaMenu()
             {
                 system("cls");
                 FoodMenu();
-            }
-            if(counter==3)
-            {
-                system("cls");
-                ChangeSetting();
-            }
-            if(counter==4)
-            {
-                system("cls");
-                break;
             }
         }
     }

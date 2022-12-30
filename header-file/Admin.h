@@ -71,7 +71,7 @@ void Storeupcoming(List *ls)
     Node *tmp;
     tmp = ls->head;
 
-    MovieFile.open("Upcoming.txt", ios::out);
+    MovieFile.open("Upcoming.txt", ios::app);
     while (tmp != NULL)
     {
         MovieFile << tmp->movie_name << "\n";
@@ -168,13 +168,22 @@ void displayNowShowing(List *ls)
 
 void displayUpcoming(List *ls)
 {
-    Node *tmp = ls->head;
-    while (tmp != NULL)
-    {
+    MovieFile.open("Upcoming.txt", ios::in);
 
-        cout << "\t\t\t\t\t" << tmp->movie_name << " " << endl;
-        tmp = tmp->next;
-    }
+        if(!MovieFile.is_open())
+            {
+            cout<<"Unable to open the file."<<endl;
+            return;
+            }
+
+        if (MovieFile.is_open()){   //checking whether the file is open
+            string tp;
+            
+            while(getline(MovieFile, tp)){ //read data from file object and put it into string.
+            cout << "\n\t\t\t\t\t"<< tp << endl; //print the data of the string
+            }
+        }
+        MovieFile.close();
 }
 
 void deleteMovie(List *ls, string search_name)
@@ -309,7 +318,6 @@ void InputNowShowing(List *ls)
        cout << "Please enter the timetable for the movie screening : ";
        getline(cin >> ws, timeAvailible[i]);
    }
-
     insertMovie(ls, nameMovie, timeAvailible);
 }
 
