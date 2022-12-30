@@ -267,7 +267,7 @@ void snackDisplay()
                     if(fOpt==9) goto mainScreen;
                     if(fOpt==2){
                             string aD;
-                            cout<<"\t\t\t\t\tInput numbering and drink:\n\t\t\t\t\t"; getline(cin, aD);
+                            cout<<"\t\t\t\t\tInput numbering, drink and price:\n\t\t\t\t\t"; cin.ignore(); getline(cin, aD);
                             addEndSnack(L2, aD);
                             Drink(L2);
                             int removeDrink;
@@ -379,7 +379,7 @@ void snackDisplay()
                     PrintReceipt("Snack-List.txt");
                     float totalCost;
                     totalCost = ccCost + fcCost + cbCost + cocaCost + gtCost + cmCost;
-                    cout<<"\n\t\t\t\t\tTotal Cost\t:\t$"<<totalCost;
+                    cout<<"\n\t\t\t\t\tTotal Cost\t:\t\t$"<<totalCost;
 
                     int ol;
                     cout<<"\n\n\t\t\t\t\t(Input 9 to go back):";
