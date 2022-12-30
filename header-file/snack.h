@@ -5,7 +5,7 @@
 #include<string>
 
 using namespace std;
-fstream fl;
+fstream f1,f2,fl;
 
 typedef struct Node Node;
 
@@ -91,7 +91,7 @@ void  mTicket(){
 void PrintReceipt(string filename){
 
     system("cls");
-    fl.open("Snack-List.txt",ios::in);
+    fl.open("Receipt.txt",ios::in);
     if(!fl){
         cout<<"Can not open file!!!";
     }
@@ -116,12 +116,28 @@ void snackDisplay()
         addEndSnack(L1, "1. Cheesy Corn    \t$2   /Can");
         addEndSnack(L1, "2. Fried Chicken  \t$1,5 /Piece");
         addEndSnack(L1, "3. Chocolate Bread\t$1   /Piece");
-        fl.open("Snack-List.txt",ios::app);
+        f1.open("Snack-List.txt",ios::out);
+        Node *tmp1 = L1->head;
+        while(tmp1!=NULL)
+        {
+            f1 << tmp1->data << endl;
+            tmp1 = tmp1->next;
+        }
+        f1.close();
 
         List *L2 = createEmptyList();
-        addEndSnack(L2, "1. Coca Cola  \t$0,75 /Can");
-        addEndSnack(L2, "2. Green Tea  \t$1,5  /Can");
-        addEndSnack(L2, "3. Coffee Milk\t$1,75 /Can");
+        addEndSnack(L2, "1. Coca Cola  \t\t$0,75 /Can");
+        addEndSnack(L2, "2. Green Tea  \t\t$1,5  /Can");
+        addEndSnack(L2, "3. Coffee Milk\t\t$1,75 /Can");
+        f2.open("Drink-List.txt",ios::out);
+        Node *tmp2 = L2->head;
+        while(tmp2!=NULL)
+        {
+            f2 << tmp2->data << endl;
+            tmp2 = tmp2->next;
+        }
+        f2.close();
+
         mainScreen:
         mainSnack();
         int selectedOpt;
@@ -140,7 +156,7 @@ void snackDisplay()
             case 1:
                     food:
                     Food(L1);
-                    fl.open("snack-List.txt", ios::app);
+                    // fl.open("snack-List.txt", ios::app);
                     
 
                     int fOpt, fOpt1;
